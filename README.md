@@ -14,7 +14,7 @@ Variables con vidas, si esta vivo o muerto, misiles, número de ronda (int),
 
 Programa basico: 5 equipos 
 
-Segunda versión: Número de equipos variable, equipos con habilidades especiales, 10 tipos de planetas
+Segunda versión: Número de equipos variable, equipos con habilidades especiales, 10 tipos de planetas (de donde provienen los tanques y dan habilidades).
 
 Tercera versión: Proyecto con interfaz gráfica.
 
@@ -23,7 +23,7 @@ Ideas:
 
 Caja Mario Kart (power ups o perjuicios aleatorios)
 
-Niveles con más ataques/habilidades (quizás una lista a elegir o mejorar algo, como partes del tanque)
+Niveles con más ataques/habilidades (quizás una lista a elegir o mejorar algo, como partes del tanque). Como alternativa, por cada ronda ganada te dan X monedas con las que comprar las mejoras en la tienda.
 
 A mitad de vida un bonus elegible (cura, defensa, mejora de ataque temporal...)
 
