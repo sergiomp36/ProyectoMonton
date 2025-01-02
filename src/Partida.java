@@ -20,6 +20,7 @@ public class Partida {
 		escogerNombreEquipo();
 		escogerPais();
 		
+		
 	}
 	
 	public void escogerNombreEquipo() {
@@ -30,15 +31,21 @@ public class Partida {
 		}
 	}
 	
+	//COMENTADO HASTA TENER CLARO COMO FUNCIONA LO DE LOS PAISES
 	public void escogerPais() {
 		for (int i=0;i<numJugadores;i++) {
-			System.out.print(participantes.get(i).getNombre()+", escoge un país (A, F, I, E, RC, P, H, AU: ");
-			String pais = input.nextLine();
-			while (pais != "A" && pais != "F" && pais != "I" && pais != "E" && pais != "RC" && pais != "P" && pais != "H" && pais != "AU") {
+			System.out.print(participantes.get(i).getNombre()+", escoge un país \n(1) Alemania, (2)Francia, (3)Italia, (4)Eslovaquia, (5)República Checa, (6)Polonia, (7)Hungría, (8)Austria: ");
+			int pais = input.nextInt();
+			while (pais<1 || pais>8) {
 				System.out.print("ERROR: Introduzca un país correcto: ");
-				pais = input.next();
+				pais = input.nextInt();
 			}
 			participantes.get(i).setPais(pais);
 		}
 	}
+	
+	
+	
+	
+	
 }

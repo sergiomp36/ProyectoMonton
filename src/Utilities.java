@@ -7,7 +7,7 @@ public class Utilities {
 	
 	public void mostrarReglasInformacion(int opcion) {
 		if (opcion == 2) {
-			System.out.println("REGLAS");
+			System.out.println("------ REGLAS ------");
 		}
 		else {
 			System.out.println("INFORMACIÓN");

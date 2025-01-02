@@ -39,8 +39,8 @@ public class Equipo {
 		return pais;
 	}
 
-	public void setPais(String pais) {
-		this.pais = pais;
+	public void setPais(int pais) {
+		this.pais = paises[pais];
 	}
 
 	public boolean isMuerte() {
