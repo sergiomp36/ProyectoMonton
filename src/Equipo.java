@@ -7,7 +7,7 @@ public class Equipo {
 	private String pais;
 	private boolean muerte;
 	
-	public String [] paises = {"Italia", "Francia", "Alemania", "Austria", "República Checa","Polonia", "Eslovaquia","Hungría"};
+	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria"};
 	
 	//CONSTRUCTOR
 	public Equipo (String nombre) {
@@ -40,7 +40,7 @@ public class Equipo {
 	}
 
 	public void setPais(int pais) {
-		this.pais = paises[pais];
+		this.pais = paises[pais-1];
 	}
 
 	public boolean isMuerte() {
