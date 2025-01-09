@@ -1,6 +1,8 @@
 
 public class Utilities {
-	//variables
+	//variables / objetos
+	
+	
 	
 	
 	//métodos
@@ -19,11 +21,27 @@ public class Utilities {
 			System.out.println("Los climas afectan a la partida de diferentes formas");
 			System.out.println("POR DEFINIR CLIMAS");
 		}
-		else {
+		
+		else if (opcion == 3) {
 			System.out.println("INFORMACIÓN");
 			System.out.println("Versión: ");
 			System.out.println("Autores: Sergio Montoya Prado / David Antón Gil");
 			System.out.println("Contacto: sergiomp36@educastur.es / RFM16975@educastur.es");
 		}
+		
+		else {
+			//CÓDIGO PARA CARGAR LA PARTIDA
+		}
 	}
+	
+	public boolean contiene(int[] array, int valor) {
+	    for (int i = 0; i < array.length; i++) {
+	        if (array[i] == valor) {
+	            return true;
+	        }
+	    }
+	    return false; 
+	}
+	
+	
 }

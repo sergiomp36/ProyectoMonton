@@ -7,17 +7,17 @@ public class Equipo {
 	private String pais;
 	private boolean muerte;
 	
-	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria"};
+	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca"};
 	
 	//CONSTRUCTOR
 	public Equipo (String nombre) {
 		this.nombre=nombre;
 	}
-
+	
+	//getters y setters
 	public String getNombre() {
 		return nombre;
 	}
-
 
 	public int getVidas() {
 		return vidas;
@@ -49,16 +49,7 @@ public class Equipo {
 
 	public void setMuerte(boolean muerte) {
 		this.muerte = muerte;
-	}
-
-	public String[] getPaises() {
-		return paises;
-	}
-
-	public void setPaises(String[] paises) {
-		this.paises = paises;
-	}
-	
+	}	
 	
 	
 }
