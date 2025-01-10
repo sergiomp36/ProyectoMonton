@@ -20,11 +20,13 @@ public class Partida {
 	
 	//metodos
 	public void jugar() {
+		int numRonda=1;
 		escogerNombreEquipo();
 		escogerPais();
 		repartirVidas();
-		for(int i = 0; i < jugadoresVivos(); i++) {
+		while (jugadoresVivos()>1) {
 			ronda();
+			numRonda++;
 		}
 	}
 	
@@ -72,6 +74,9 @@ public class Partida {
 	}
 	
 	
+	private void repartirMisiles() {
+		//igual que el de vidas, falta por pensar como se reparten.
+	}
 	
 	private void ronda() {
 		for (int i=0; i<numJugadores;i++) {
