@@ -43,5 +43,12 @@ public class Utilities {
 	    return false; 
 	}
 	
-	
+	public int indexOf(String[] array, String valor) {
+	    for (int i = 0; i < array.length; i++) {
+	        if (array[i].equals(valor)) {
+	            return i;  
+	        }
+	    }
+	    return -1; // si no encontrara el valor, retornaria menis 1
+	}
 }

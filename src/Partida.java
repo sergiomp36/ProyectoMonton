@@ -1,14 +1,17 @@
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 
 public class Partida {
 	Scanner input = new Scanner(System.in);
 	Menu menu = new Menu();
+	Utilities util = new Utilities();
 	
 	//variables
-	ArrayList <Equipo> participantes = new ArrayList<Equipo>();
+	public ArrayList <Equipo> participantes = new ArrayList<Equipo>();
 	private int numJugadores;
+	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca"};
 	
 	//CONSTRUCTOR
 	
@@ -41,7 +44,7 @@ public class Partida {
 	
 	
 	private void escogerPais() {
-		Utilities util = new Utilities();
+		
 		int[] paisesEscogidos = new int[numJugadores];
 		for (int i=0;i<numJugadores;i++) {
 			System.out.println(participantes.get(i).getNombre()+", escoge un país \n(1) Alemania, (2)Francia, (3)Italia, (4)Eslovaquia\n(5)República Checa, (6)Polonia, (7)Hungría, (8)Austria\n(9)Polonia, (10)Dinamarca: ");
@@ -74,7 +77,7 @@ public class Partida {
 	}
 	
 	
-	private void repartirMisiles() {
+	private void repartirMisilesAtaque() {
 		//igual que el de vidas, falta por pensar como se reparten.
 	}
 	
@@ -82,18 +85,20 @@ public class Partida {
 		for (int i=0; i<numJugadores;i++) {
 			if (!participantes.get(i).isMuerte()) {//comprueba si está muerto y si sigue vivo entra en el if
 				int opcion = menu.menuRonda(participantes.get(i));
-				if (opcion == 1) {
+				
+				if (opcion == 1) {//si elige ATACAR
 					System.out.println("¿A quién quieres atacar?");
-					for (int j = 0 ; j < numJugadores ; j++) {//bucle para mostrar los paises que siguen con vida
-						if (!participantes.get(i).isMuerte()) {
-							System.out.println(participantes.get(j).getPais());
+					for (int j = 0 ; j < numJugadores ; j++) {//bucle para mostrar los paises que siguen con vida y que no coinciden con el actual
+						if (!participantes.get(i).isMuerte() && i!=j) {
+							System.out.println("("+(util.indexOf(paises,participantes.get(j).getPais())+1)+") "+participantes.get(j).getPais());
 						}
 					}
+					
+					
 					
 				}
 			}
 		}
-		
 	}
 	
 	

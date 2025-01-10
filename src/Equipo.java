@@ -3,16 +3,19 @@ public class Equipo {
 
 	private String nombre;
 	private int vidas;
-	private int misiles;
+	private int misilesAtaque;
+	private int misilesDefensa;
 	private String pais;
 	private boolean muerte;
+	private String clima;
 	
 	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca"};
-	
+	public String []climas = {"Niebla", "Lluvia", "Calor", "Nieve", "Terremoto"};
 	//CONSTRUCTOR
 	public Equipo (String nombre) {
 		this.nombre=nombre;
 	}
+	
 	
 	//getters y setters
 	public String getNombre() {
@@ -27,12 +30,20 @@ public class Equipo {
 		this.vidas = vidas;
 	}
 
-	public int getMisiles() {
-		return misiles;
+	public int getMisilesAtaque() {
+		return misilesAtaque;
 	}
 
-	public void setMisiles(int misiles) {
-		this.misiles = misiles;
+	public void setMisilesAtaque(int misiles) {
+		this.misilesAtaque = misiles;
+	}
+	
+	public int getMisilesDefensa() {
+		return misilesDefensa;
+	}
+
+	public void setMisilesDefensa(int misiles) {
+		this.misilesDefensa = misiles;
 	}
 
 	public String getPais() {
@@ -49,7 +60,18 @@ public class Equipo {
 
 	public void setMuerte(boolean muerte) {
 		this.muerte = muerte;
+	}
+
+
+	public String getClima() {
+		return clima;
+	}
+
+
+	public void setClima(int clima) {
+		this.clima = climas[clima-1];
 	}	
 	
 	
+
 }
