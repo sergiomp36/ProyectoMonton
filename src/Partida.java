@@ -1,49 +1,40 @@
 import java.util.ArrayList;
+
 import java.util.Scanner;
+
 
 public class Partida {
 	Scanner input = new Scanner(System.in);
+	Menu menu = new Menu();
+	Utilities util = new Utilities();
 	
 	//variables
-	
-	/*
-	 * El ArrayList es un Array de objetos de tipo Equipo. Al ser una estructura dinámica
-	 * se pueden ir añadiendo equipos según se van creando con participantes.add (linea 43).
-	 * 
-	 * 
-	*/
-	ArrayList <Equipo> participantes = new ArrayList<Equipo>();
-	public int numJugadores;
+	public ArrayList <Equipo> participantes = new ArrayList<Equipo>();
+	private int numJugadores;
+	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca"};
 	
 	//CONSTRUCTOR
 	
-	/*
-	 * El número de jugadores se le pasa al constructor. Si vas a la clase main,
-	 * verás que el número de jugadores lo determina un menú de la clase menú para
-	 * que introduzca el número el usuario.
-	*/
+	
 	public Partida(int numJugadores) {
 		this.numJugadores=numJugadores;
 	}
 	
-	//metodos
 	
-	/*
-	 * Este es el método principal que se ejecuta desde el método main
-	 * y sirve principalmente para llamar a otros métodos de esta clase.
-	*/
+	//metodos
 	public void jugar() {
+		int numRonda=1;
 		escogerNombreEquipo();
 		escogerPais();
 		repartirVidas();
-		
-		
+		while (jugadoresVivos()>1) {
+			ronda();
+			numRonda++;
+		}
 	}
-	/* 
-	 * se le da un nombre al equipo (escogido por el usuario) que puede ser cualquier String.
-	 * (en el print de la linea 31 pone (i+1) para que ponga bien el número y se salte el 0).
-	*/
-	public void escogerNombreEquipo() {
+	
+	
+	private void escogerNombreEquipo() {
 		for (int i = 0; i<numJugadores;i++) {
 			System.out.print("Jugador "+(i+1)+", escoge un nombre: ");
 			String nombre = input.next();
@@ -52,27 +43,27 @@ public class Partida {
 	}
 	
 	
-	/* 
-	 * asigna un país en función de un número q introduce el usuario.
-	 * ese número se le pasa al setter que está en la clase Equipo 
-	 * y este coge ese elemento del array de países que está en esa clase también.
-	*/
-	public void escogerPais() {
+	private void escogerPais() {
+		
+		int[] paisesEscogidos = new int[numJugadores];
 		for (int i=0;i<numJugadores;i++) {
-			System.out.print(participantes.get(i).getNombre()+", escoge un país \n(1) Alemania, (2)Francia, (3)Italia, (4)Eslovaquia\n(5)República Checa, (6)Polonia, (7)Hungría, (8)Austria: ");
+			System.out.println(participantes.get(i).getNombre()+", escoge un país \n(1) Alemania, (2)Francia, (3)Italia, (4)Eslovaquia\n(5)República Checa, (6)Polonia, (7)Hungría, (8)Austria\n(9)Polonia, (10)Dinamarca: ");
 			int pais = input.nextInt();
-			while (pais<1 || pais>8) {
+			while (pais<1 || pais>10) {
 				System.out.print("ERROR: Introduzca un país correcto: ");
 				pais = input.nextInt();
 			}
+			while (util.contiene(paisesEscogidos, pais)) {
+				System.out.print("ERROR: "+ participantes.get(i).paises[pais-1]+" ya está escogido. Escoge otro: ");
+				pais = input.nextInt();
+			}
+			paisesEscogidos[i]=pais;
 			participantes.get(i).setPais(pais);
-			System.out.println("Has escogido "+participantes.get(i).getPais());
 		}
 	}
 	
 	
-	//reparte vidas en funcion del país: todos 200 menos Francia que tiene un 20% más
-	public void repartirVidas() {
+	private void repartirVidas() {
 		for (int i=0;i<numJugadores;i++) {
 			switch (participantes.get(i).getPais()) {
 			case "Francia":
@@ -86,6 +77,40 @@ public class Partida {
 	}
 	
 	
+	private void repartirMisilesAtaque() {
+		//igual que el de vidas, falta por pensar como se reparten.
+	}
+	
+	private void ronda() {
+		for (int i=0; i<numJugadores;i++) {
+			if (!participantes.get(i).isMuerte()) {//comprueba si está muerto y si sigue vivo entra en el if
+				int opcion = menu.menuRonda(participantes.get(i));
+				
+				if (opcion == 1) {//si elige ATACAR
+					System.out.println("¿A quién quieres atacar?");
+					for (int j = 0 ; j < numJugadores ; j++) {//bucle para mostrar los paises que siguen con vida y que no coinciden con el actual
+						if (!participantes.get(i).isMuerte() && i!=j) {
+							System.out.println("("+(util.indexOf(paises,participantes.get(j).getPais())+1)+") "+participantes.get(j).getPais());
+						}
+					}
+					
+					
+					
+				}
+			}
+		}
+	}
+	
+	
+	private int jugadoresVivos () {
+		int jugadores=0;
+		for (int i = 0; i < numJugadores ; i++) {
+			if (!participantes.get(i).isMuerte()) {
+				jugadores++;
+			}
+		}
+		return jugadores;
+	}
 	
 	
 	

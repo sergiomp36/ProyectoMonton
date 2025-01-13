@@ -1,6 +1,8 @@
 
 public class Utilities {
-	//variables
+	//variables / objetos
+	
+	
 	
 	
 	//métodos
@@ -37,11 +39,34 @@ public class Utilities {
 			System.out.println("   •	Terremoto (muy raro): Hace 5 de daño al jugador por cada turno activo. \n");
 			System.out.println("La partida podrá ser guardada para poder continuarla en otra ocasión.");
 		}
-		else {
+		
+		else if (opcion == 3) {
 			System.out.println("INFORMACIÓN");
 			System.out.println("Versión: ");
 			System.out.println("Autores: Sergio Montoya Prado / David Antón Gil");
 			System.out.println("Contacto: sergiomp36@educastur.es / RFM16975@educastur.es");
 		}
+		
+		else {
+			//CÓDIGO PARA CARGAR LA PARTIDA
+		}
+	}
+	
+	public boolean contiene(int[] array, int valor) {
+	    for (int i = 0; i < array.length; i++) {
+	        if (array[i] == valor) {
+	            return true;
+	        }
+	    }
+	    return false; 
+	}
+	
+	public int indexOf(String[] array, String valor) {
+	    for (int i = 0; i < array.length; i++) {
+	        if (array[i].equals(valor)) {
+	            return i;  
+	        }
+	    }
+	    return -1; // si no encontrara el valor, retornaria menis 1
 	}
 }
