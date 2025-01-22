@@ -9,8 +9,9 @@ public class Equipo {
 	private boolean muerte;
 	private String clima;
 	
-	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca"};
+	private String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca","Croacia"};
 	public String []climas = {"Niebla", "Lluvia", "Calor", "Nieve", "Terremoto"};
+	
 	//CONSTRUCTOR
 	public Equipo (String nombre) {
 		this.nombre=nombre;
@@ -70,6 +71,16 @@ public class Equipo {
 
 	public void setClima(int clima) {
 		this.clima = climas[clima-1];
+	}
+
+
+	public String getPaises(int n) {
+		return paises[n];
+	}
+
+
+	public String[] getPaises() {
+		return paises;
 	}	
 	
 	

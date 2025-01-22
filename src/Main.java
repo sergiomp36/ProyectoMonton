@@ -4,8 +4,9 @@ public class Main {
 	public static void main(String[] args) {
 		Menu menu=new Menu();
 		
-		if (menu.menuInicial()==0) {
-			return;
+		int opcionInicial=menu.menuInicial();
+		if (opcionInicial==0) {
+			System.exit(0);;
 		}
 		
 

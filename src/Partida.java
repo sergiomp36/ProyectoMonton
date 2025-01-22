@@ -11,7 +11,7 @@ public class Partida {
 	//variables
 	public ArrayList <Equipo> participantes = new ArrayList<Equipo>();
 	private int numJugadores;
-	public String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca"};
+	int [][] opcionesAtaque = new int [numJugadores][2];
 	
 	//CONSTRUCTOR
 	
@@ -24,17 +24,18 @@ public class Partida {
 	//metodos
 	public void jugar() {
 		int numRonda=1;
-		escogerNombreEquipo();
-		escogerPais();
+		escogerNombreEquipos();
+		escogerPaises();
 		repartirVidas();
 		while (jugadoresVivos()>1) {
-			ronda();
+			
+			ronda(numRonda);
 			numRonda++;
-		}
+		} 
 	}
 	
 	
-	private void escogerNombreEquipo() {
+	private void escogerNombreEquipos() {
 		for (int i = 0; i<numJugadores;i++) {
 			System.out.print("Jugador "+(i+1)+", escoge un nombre: ");
 			String nombre = input.next();
@@ -43,22 +44,22 @@ public class Partida {
 	}
 	
 	
-	private void escogerPais() {
+	private void escogerPaises() {
 		
 		int[] paisesEscogidos = new int[numJugadores];
 		for (int i=0;i<numJugadores;i++) {
 			System.out.println(participantes.get(i).getNombre()+", escoge un país \n(1) Alemania, (2)Francia, (3)Italia, (4)Eslovaquia\n(5)República Checa, (6)Polonia, (7)Hungría, (8)Austria\n(9)Polonia, (10)Dinamarca: ");
-			int pais = input.nextInt();
-			while (pais<1 || pais>10) {
+			int opcionPais = input.nextInt();
+			while (opcionPais<1 || opcionPais>10) {
 				System.out.print("ERROR: Introduzca un país correcto: ");
-				pais = input.nextInt();
+				opcionPais = input.nextInt();
 			}
-			while (util.contiene(paisesEscogidos, pais)) {
-				System.out.print("ERROR: "+ participantes.get(i).paises[pais-1]+" ya está escogido. Escoge otro: ");
-				pais = input.nextInt();
+			while (util.contiene(paisesEscogidos, opcionPais)) {
+				System.out.print("ERROR: "+ participantes.get(i).getPaises(opcionPais-1)+" ya está escogido. Escoge otro: ");
+				opcionPais = input.nextInt();
 			}
-			paisesEscogidos[i]=pais;
-			participantes.get(i).setPais(pais);
+			paisesEscogidos[i]=opcionPais;
+			participantes.get(i).setPais(opcionPais);
 		}
 	}
 	
@@ -81,24 +82,41 @@ public class Partida {
 		//igual que el de vidas, falta por pensar como se reparten.
 	}
 	
-	private void ronda() {
+	private void ronda(int numRonda) {
+		//repartirMisilesAtaque();
+		int opcion,opcionRonda;
+		System.out.println("Ronda "+numRonda);
+		
 		for (int i=0; i<numJugadores;i++) {
 			if (!participantes.get(i).isMuerte()) {//comprueba si está muerto y si sigue vivo entra en el if
-				int opcion = menu.menuRonda(participantes.get(i));
+				opcion = menu.menuRonda(participantes.get(i));
 				
 				if (opcion == 1) {//si elige ATACAR
 					System.out.println("¿A quién quieres atacar?");
 					for (int j = 0 ; j < numJugadores ; j++) {//bucle para mostrar los paises que siguen con vida y que no coinciden con el actual
 						if (!participantes.get(i).isMuerte() && i!=j) {
-							System.out.println("("+(util.indexOf(paises,participantes.get(j).getPais())+1)+") "+participantes.get(j).getPais());
+							System.out.println("("+(util.indexOf(participantes.get(i).getPaises(),participantes.get(j).getPais())+1)+") "+participantes.get(j).getPais());
 						}
 					}
-					
-					
-					
+					opcionRonda = input.nextInt()-1;
+					if (opcionRonda!=i && !participantes.get(opcionRonda).isMuerte()) {
+						opcionesAtaque[i][2] = opcionRonda;
+					}	
 				}
+				
+				if (opcion ==2) {//SI ELIGE DEFENDER
+					opcionesAtaque[i][2] = -1;
+				}
+				
+				else {
+					// CÓDIGO PARA AYUDA ALIADA
+				}
+				
 			}
 		}
+		
+		
+		
 	}
 	
 	
