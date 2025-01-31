@@ -119,13 +119,13 @@
 
 //CLASE EQUIPO
 
-    private String nombre;
-    private int vidas;
-    private int misilesAtaque;
-    private int misilesDefensa;
-    private String pais;
-    private boolean muerte;
-    private String clima;
+//    private String nombre;
+//    private int vidas;
+//    private int misilesAtaque;
+//    private int misilesDefensa;
+//    private String pais;
+//    private boolean muerte;
+//    private String clima;
 
     private String [] paises = {"Alemania", "Francia", "Italia", "Eslovaquia", "República Checa","Polonia", "Hungría","Austria","Polonia","Dinamarca","Croacia"};
     public String []climas = {"Niebla", "Lluvia", "Calor", "Nieve", "Terremoto"};
@@ -205,30 +205,9 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //CLASE MENU
-
-    public int menuRonda(Equipo equipo) {
-        int opcion;
-        System.out.println("Turno de "+equipo.getNombre());
-        System.out.println("¿Qué quieres hacer?");
-        System.out.println("(1) Atacar");
-        System.out.println("(2) Defender");
-        System.out.println("(3) Solicitar ayuda aliada");
-        opcion = input.nextInt();
-        return opcion;
-    }
 	Scanner input = new Scanner(System.in);
 	
-
-	public int numeroJugadores() {
-		int opcion;
-		System.out.print("Introduzca el número de jugadores: ");
-		opcion=input.nextInt();
-		while (opcion<3||opcion>10) {
-			System.out.print("Opción incorrecta. Inténtalo de nuevo: ");
-			opcion=input.nextInt();
-		}
-		return opcion;
-	}
+	
 	
 
 	public int menuInicial() {

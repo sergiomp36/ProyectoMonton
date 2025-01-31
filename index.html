@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Ficha Técnica - Red Code</title>
+</head>
+
+<body class="container">
+    <h1>Red Code</h1>
+    <h2>Autores</h2>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <p>Sergio Montoya Prado</p>
+            <p>David Antón Gil</p>
+        </div>
+        <div>
+            <p><a href="https://github.com/sergiomp36/ProyectoMonton">Repositorio en GitHub</a></p>
+            <p><a href="https://trello.com/b/Riorstly">Tablero de Trello</a></p>
+        </div>
+    </div>
+    
+    
+    <h2>Requisitos</h2>
+    <p>Al iniciarse se mostrará un menú inicial con las siguientes opciones:</p>
+    <ul>
+        <li><strong>Jugar:</strong> Iniciar una partida de entre 3 y 10 jugadores o cargar una partida previa.</li>
+        <li><strong>Reglas:</strong> Visualización de las reglas del juego y mecánicas.</li>
+        <li><strong>Información:</strong> Datos sobre la versión, creadores y contacto.</li>
+        <li><strong>Salir:</strong> Finalizar la aplicación.</li>
+    </ul>
+    
+    <h2>Selección de Países</h2>
+    <p>Cada jugador podrá escoger entre 10 países con habilidades pasivas únicas:</p>
+    <ul>
+        <li><strong>Alemania:</strong> +10 misiles al atacar, +10 extra en niebla.</li>
+        <li><strong>Austria:</strong> +10 defensa, +10 extra en lluvia.</li>
+        <li><strong>Francia:</strong> +60 vida máxima, 5% posibilidad de fallo en ataque.</li>
+        <li><strong>República Checa:</strong> +20% daño realizado, +10% daño recibido en climas especiales.</li>
+        <li><strong>Italia:</strong> Cada 2 rondas genera automáticamente 5 de escudo.</li>
+        <li><strong>Hungría:</strong> Si usa todos los recursos en defensa, se vuelve invulnerable pero pierde el siguiente turno.</li>
+        <li><strong>Polonia:</strong> Obtiene una ronda extra al llegar a 0 de vida.</li>
+        <li><strong>Eslovaquia:</strong> Gana una habilidad aleatoria entre 4.</li>
+        <li><strong>Dinamarca:</strong> Doble vida, pero empieza con 10 misiles, incrementándose en 10 por ronda hasta el número normal.</li>
+        <li><strong>Croacia:</strong> Mitad de vida, pero 40% de evasión.</li>
+    </ul>
+    
+    <h2>Climas Especiales</h2>
+    <p>En cada turno puede aparecer un clima especial con los siguientes efectos:</p>
+    <ul>
+        <li><strong>Niebla:</strong> 20% de posibilidad de fallo en ataques.</li>
+        <li><strong>Lluvia:</strong> Reduce la defensa en 10.</li>
+        <li><strong>Alto calor:</strong> Aumenta el daño en 10.</li>
+        <li><strong>Nieve:</strong> Impide solicitar ayuda a aliados.</li>
+        <li><strong>Terremoto (muy raro):</strong> Hace 5 de daño por turno activo.</li>
+    </ul>
+    
+    <h2>Opciones de Turno</h2>
+    <p>En cada turno los jugadores pueden elegir:</p>
+    <ul>
+        <li><strong>Atacar:</strong> Usar misiles contra enemigos, los no utilizados pueden usarse en defensa.</li>
+        <li><strong>Defender:</strong> Requiere el doble de misiles que atacar.</li>
+        <li><strong>Solicitar ayuda a aliados:</strong> Puede resultar en:
+            <ul>
+                <li>+25 misiles extra para ataque (25%).</li>
+                <li>+30 misiles extra para defensa (25%).</li>
+                <li>+20% evasión (25%).</li>
+                <li>Invulnerabilidad ese turno (10%).</li>
+                <li>¡Traición aliada! Recibir 10 puntos de daño (15%).</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <h2>Guardado</h2>
+    <p>La partida podrá ser guardada para continuar en otra ocasión.</p>
+    
+    <footer style="text-align: center; font-size: 0.8em; margin-top: 50px;">
+        <p>Sergio Montoya Prado &bull; David Antón Gil</p>
+    </footer>
+</body>
+</html>
