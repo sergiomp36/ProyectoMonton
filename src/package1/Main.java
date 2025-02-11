@@ -1,0 +1,21 @@
+package package1;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Menu menu = new Menu();
+		
+		int x;
+		
+		do {
+		x = menu.menuInicial();
+		if (x==0)
+			System.exit(0);
+		Partida partida = new Partida();
+		partida.jugar(menu.menuNumJugadores());
+		}while(x!=0);
+		
+		
+	}
+
+}

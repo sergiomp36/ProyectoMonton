@@ -1,0 +1,35 @@
+------ REGLAS ------
+Hay entre 3 y 10 equipos. El objetivo es ser el último equipo vivo.
+
+Los misiles pueden dividirse para atacar a varios equipos a la vez.
+La defensa cuesta el doble de misiles que atacar.
+Los misiles pueden dividirse entre ataque y defensa.
+
+Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender. Esto causará uno de los siguientes efectos de manera aleatoria:
+
+Conseguir 25 misiles para atacar extra, 25%.
+Conseguir 30 misiles para defender extra, 25%.
+Conseguir un 20% de evasión, 25%.
+Invulnerabilidad durante ese turno, 10%.
+¡Traición aliada! Recibir 10 puntos de daño, 15%.
+Puedes elegir entre varios países, cada país tiene una habilidad pasiva diferente:
+
+ALEMANIA: 10 más de misiles al atacar, 10 extra en niebla.
+AUSTRIA: 10 más al defender. 10 extra en lluvia.
+FRANCIA: 60 más de vida máxima, 5% posibilidades de fallar el ataque.
+YUGOSLAVIA: 20% más de daño realizado y 10% de daño recibido en climas especiales.
+ITALIA: Cada 2 rondas genera automáticamente 5 de escudo.
+HUNGRÍA: Si usa todos los recursos para defender, se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).
+POLONIA: Consigue una ronda extra al llegar a 0 de vida.
+BÉLGICA: Consigue una habilidad aleatoria entre 4.
+DINAMARCA: Doble de vida, pero empieza con 10 misiles (que se van incrementando en 10 en cada ronda hasta el número normal de misiles).
+SUIZA: Mitad de vida, 40% de evasión.
+Los climas afectan a la partida de diferentes formas:
+
+Niebla: 20% de posibilidad de fallar ataques.
+Lluvia: Baja la defensa en 10.
+Alto calor: Aumenta el daño en 10.
+Nieve: Impide pedir ayuda a aliados.
+Terremoto (muy raro): Hace 5 de daño al jugador por cada turno activo.
+La partida podrá ser guardada para poder continuarla en otra ocasión.
+

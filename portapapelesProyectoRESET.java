@@ -61,16 +61,16 @@
             System.out.println("   4.	Invulnerabilidad durante ese turno, 10%.");
             System.out.println("   5.	¡Traición aliada! Recibir 10 puntos de daño, 15%. \n");
             System.out.println("Puedes elegir entre varios países, cada país tiene una habilidad pasiva diferente:");
-            System.out.println("   •    Alemania: 10 más de misiles al atacar, 10 extra en niebla.");
-            System.out.println("   •    Austria: 10 más al defender. 10 extra en lluvia.");
-            System.out.println("   •	Francia: 60 más de vida máxima, 5% posibilidades de fallar el ataque.");
-            System.out.println("   •	República Checa: 20% más de daño realizado y 10% de daño recibido en climas especiales.");
-            System.out.println("   •	Italia: Cada 2 rondas genera automáticamente 5 de escudo.");	
-            System.out.println("   •	Hungría: Si usa todos los recursos para defender se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).");		
-            System.out.println("   •	Polonia: Consigue una ronda extra al llegar a 0 de vida.");	
-            System.out.println("   •	Eslovaquia: Consigue una habilidad aleatoria entre 4.");
-            System.out.println("   •	Dinamarca: Doble de vida, pero empieza con 10 misiles (que se van incrementado en 10 en cada ronda hasta el numero normal de misiles).");
-            System.out.println("   •	Croacia: Mitad de vida, 40% de evasión. \n");
+            System.out.println("   •    ALEMANIA: 10 más de misiles al atacar, 10 extra en niebla.");
+            System.out.println("   •    AUSTRIA: 10 más al defender. 10 extra en lluvia.");
+            System.out.println("   •	FRANCIA: 60 más de vida máxima, 5% posibilidades de fallar el ataque.");
+            System.out.println("   •	YUGOSLAVIA: 20% más de daño realizado y 10% de daño recibido en climas especiales.");
+            System.out.println("   •	ITALIA: Cada 2 rondas genera automáticamente 5 de escudo.");	
+            System.out.println("   •	HUNGRÍA: Si usa todos los recursos para defender se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).");		
+            System.out.println("   •	POLONIA: Consigue una ronda extra al llegar a 0 de vida.");	
+            System.out.println("   •	BÉLGICA: Consigue una habilidad aleatoria entre 4.");
+            System.out.println("   •	DINAMARCA: Doble de vida, pero empieza con 10 misiles (que se van incrementado en 10 en cada ronda hasta el numero normal de misiles).");
+            System.out.println("   •	SUIZA: Mitad de vida, 40% de evasión. \n");
             System.out.println("Los climas afectan a la partida de diferentes formas:");
             System.out.println("   •	Niebla: 20% de posibilidad de fallar ataque.s");
             System.out.println("   •	Lluvia: Baja la defensa en 10.");
@@ -78,8 +78,6 @@
             System.out.println("   •	Nieve: Impide pedir ayuda a aliados.");
             System.out.println("   •	Terremoto (muy raro): Hace 5 de daño al jugador por cada turno activo. \n");
             System.out.println("La partida podrá ser guardada para poder continuarla en otra ocasión.");
-            
-            
         }
         
         else if (opcion == 3) {
