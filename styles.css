@@ -137,6 +137,10 @@ a:hover {
     animation:backgroundIn 3s ease-in-out forwards;
 }
 
+.portada {
+    margin:center;
+}
+
 footer {
     text-align: center;
     font-size: 0.9em;
