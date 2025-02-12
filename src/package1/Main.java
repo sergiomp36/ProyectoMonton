@@ -11,9 +11,7 @@ public class Main {
 		x = menu.menuInicial();
 		if (x==0)
 			System.exit(0);
-		else if (x==2 || x==3) {
-			Utilities.mostrarReglasInformacion(x);
-		}
+		
 		else {
 			Partida partida = new Partida();
 			partida.jugar(menu.menuNumJugadores());

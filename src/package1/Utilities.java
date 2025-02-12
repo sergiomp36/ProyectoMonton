@@ -12,7 +12,6 @@ public class Utilities {
 
 	// MÉTODOS
 	public static void mostrarReglasInformacion(int opcion) {
-		System.out.println("Método mostrarReglasInformacion llamado con opción: " + opcion);
 		if (opcion == 2) {
 			leerReglas();
 		}
@@ -26,7 +25,7 @@ public class Utilities {
 	}
 	
 	
-	public static void leerReglas() {//SE LEE DOS VECES Y NO ENCUENTRO EL FALLO
+	public static void leerReglas() {
 		try {
             File archivo = new File("reglas.txt");
             Scanner scanner = new Scanner(archivo);
@@ -44,14 +43,14 @@ public class Utilities {
 	
 	public static void leerInformacion() {
 		try {
-            File archivo = new File("informacion.txt"); // Ruta del archivo
+            File archivo = new File("informacion.txt");
             Scanner scanner = new Scanner(archivo);
 
-            while (scanner.hasNextLine()) { // Leer línea por línea
+            while (scanner.hasNextLine()) {
                 String linea = scanner.nextLine();
                 System.out.println(linea);
             }
-            scanner.close(); // Cerrar el scanner
+          scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Error: Archivo no encontrado.");
             e.printStackTrace();

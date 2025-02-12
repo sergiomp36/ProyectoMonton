@@ -1,11 +1,12 @@
------- REGLAS ------
+			------ REGLAS ------
 Hay entre 3 y 10 equipos. El objetivo es ser el último equipo vivo.
 
 Los misiles pueden dividirse para atacar a varios equipos a la vez.
 La defensa cuesta el doble de misiles que atacar.
 Los misiles pueden dividirse entre ataque y defensa.
 
-Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender. Esto causará uno de los siguientes efectos de manera aleatoria:
+Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender. 
+Esto causará uno de los siguientes efectos de manera aleatoria:
 
 Conseguir 25 misiles para atacar extra, 25%.
 Conseguir 30 misiles para defender extra, 25%.
@@ -32,4 +33,3 @@ Alto calor: Aumenta el daño en 10.
 Nieve: Impide pedir ayuda a aliados.
 Terremoto (muy raro): Hace 5 de daño al jugador por cada turno activo.
 La partida podrá ser guardada para poder continuarla en otra ocasión.
-
