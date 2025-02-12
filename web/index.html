@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Juego</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <img src="titulo.jpg" alt="Titulo" width="250">
+        <nav>
+            <ul>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#proyecto">Proyecto</a></li>
+                <li><a href="#documentacion">Documentación</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#enlaces">Enlaces</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="equipo">
+        <h2>Conoce al Equipo</h2>
+        <div class="miembro" onclick="mostrarModal('modalMiembro')">
+            <h3>Sergio Montoya</h3>
+            <img src="sergio.jpg" alt="Foto de Sergio" width="250">
+                        <p>Rol en el Proyecto</p>
+        </div>
+	<div class="miembro" onclick="mostrarModal('modalMiembro')">
+            <h3>David Anton</h3>
+            <img src="david.jpg" alt="Foto de David" width="250">
+            <p>Rol en el Proyecto</p>
+        </div>
+    </section>
+    
+    <section id="proyecto">
+        <h2>¿Qué es RedCode?</h2>
+        <p>RedCode es un juego de estrategia en el que cada jugador representa a un país</p>
+        <p>Cada país tiene una cantidad fija de misiles a repartir entre ataque y denfesa</p>
+        <p>Cada 3 turnos tendrás la oportunidad de solicitar ayuda a tus aliados, o no...</p>
+        <p>El último país en pie se coronará como el campeón, ¿serás capaz de sobrevivir?</p>
+    </section>
+    
+    <section id="documentacion">
+        <h2>Documentación del Proyecto</h2>
+        <h3>Diagrama de Clases</h3>
+        <img src="DiagramaMonton.png" alt="Diagrama de clases" width="250">
+        <h3>Diagrama ER</h3>
+        <img src="diagrama_er.png" alt="Diagrama ER">
+    </section>
+    
+    <section id="galeria">
+        <h2>Galería del Juego</h2>
+        <p>Mockups y futuras capturas de pantalla.</p>
+        <img src="demojuego.jpg" alt="Ejemplo imagen" width="500">
+    </section>
+    
+    <section id="enlaces">
+        <h2>Enlaces Importantes</h2>
+        <ul>
+            <p><a href="https://github.com/sergiomp36/ProyectoMonton" target="_blank">Repositorio en GitHub</a></p>
+            <p><a href="https://trello.com/b/Riorstly" target="_blank">Tablero de Trello</a></p>
+        </ul>
+    </section>
+</body>
+</html>

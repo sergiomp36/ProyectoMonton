@@ -1,0 +1,39 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // Función para mostrar un modal
+    window.mostrarModal = function(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = "block";
+        }
+    };
+
+    // Función para cerrar un modal
+    window.cerrarModal = function(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    // Cerrar modal si se hace clic fuera del contenido
+    window.onclick = function(event) {
+        const modals = document.getElementsByClassName("modal");
+        for (let modal of modals) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    };
+
+    // Animaciones de entrada en secciones al hacer scroll
+    const secciones = document.querySelectorAll("section");
+    const observar = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    secciones.forEach(seccion => observar.observe(seccion));
+});
