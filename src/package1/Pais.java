@@ -14,6 +14,11 @@ public class Pais {
     //CONSTRUCTOR
     public Pais (String nombre) {
     	this.nombrePais = nombre;
+    	
+    }
+    
+    public Pais () {
+    	
     }
     
     //MÉTODOS
@@ -36,6 +41,7 @@ public class Pais {
 
 	public void setVidasIniciales(int vidas) {
 		this.vidasIniciales = vidas;
+		this.vidasActuales = vidas;
 	}
 
 	public int getVidasActuales() {
@@ -68,6 +74,14 @@ public class Pais {
 
 	public void setEscudo(int escudo) {
 		this.escudo = escudo;
+	}
+
+	public String[] getPaises() {
+		return paises;
+	}
+
+	public void setPaises(String[] paises) {
+		this.paises = paises;
 	}
     
 	

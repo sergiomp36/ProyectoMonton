@@ -6,6 +6,11 @@ public class Equipo {
 	private boolean muerte;
 	private Pais pais;
 	
+	
+	public Equipo(String nombre) {
+		this.nombre=nombre;
+	}
+	
 	//METÓDOS	
 	public String getNombre() {
 		return nombre;
@@ -26,8 +31,7 @@ public class Equipo {
 		this.pais = pais;
 	}
 	
-	
-	
+
 	
 }
 
