@@ -35,6 +35,7 @@ public class Partida {
 		System.out.println("RONDA "+numRonda);
 		imprimirClima();
 		for (int i = 0; i < jugadoresVivos() ; i++) {
+			repartirMisilesMaxAtaque(participantes.get(i));
 			int opc = menu.menuAtacarDefender(participantes.get(i), numRonda);
 			if(opc==1) {
 				
@@ -77,20 +78,21 @@ public class Partida {
     }	
 	
 	
-	private void repartirMisilesMaxAtaque(Equipo equipo, int ronda) {
+	private void repartirMisilesMaxAtaque(Equipo equipo) {
 		if (equipo.getPais().getNombrePais().equals("ALEMANIA")) {
     		if (climaRonda.equals("LLUVIA")) 
-    			equipo.getPais().setMisilesAtaque(70);
+    			equipo.getPais().setMisilesMaxAtaque(70);
     		else 
-    			equipo.getPais().setMisilesAtaque(60);
+    			equipo.getPais().setMisilesMaxAtaque(60);
     	}
-		else if (equipo.getPais().getNombrePais().equals("DINAMARCA") && ronda<=5) {
-			equipo.getPais().setMisilesAtaque(10*ronda);
+		else if (equipo.getPais().getNombrePais().equals("DINAMARCA") && numRonda<=5) {
+			equipo.getPais().setMisilesMaxAtaque(10*numRonda);
 		}
 		else {
-			equipo.getPais().setMisilesAtaque(50);
+			equipo.getPais().setMisilesMaxAtaque(50);
 		}
 	}
+	
 	
 	
 	

@@ -7,6 +7,7 @@ public class Pais {
 	private int vidasActuales;
     private int misilesAtaque;
     private int misilesDefensa;
+    private int misilesMaxAtaque;
     private int escudo; //pasiva Italia
 	
     private String[] paises = {"ALEMANIA", "AUSTRIA", "FRANCIA", "YUGOSLAVIA", "ITALIA", "HUNGRÍA", "POLONIA", "BÉLGICA", "DINAMARCA", "SUIZA"}; 
@@ -82,6 +83,14 @@ public class Pais {
 
 	public void setPaises(String[] paises) {
 		this.paises = paises;
+	}
+
+	public int getMisilesMaxAtaque() {
+		return misilesMaxAtaque;
+	}
+
+	public void setMisilesMaxAtaque(int misilesAux) {
+		this.misilesMaxAtaque = misilesAux;
 	}
     
 	
