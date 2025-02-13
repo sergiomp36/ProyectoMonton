@@ -19,6 +19,10 @@
                 <li><a href="#enlaces">Enlaces</a></li>
             </ul>
         </nav>
+        <div id="pantallaInicio">
+    <h1>Inicia el código rojo</h1>
+    <img src="boton.png" alt="Entrar" id="imagenEntrar" onclick="ocultarPantallaInicio()">
+</div>
     </header>
     
     <section id="equipo">
@@ -64,5 +68,9 @@
             <p><a href="https://trello.com/b/Riorstly" target="_blank">Tablero de Trello</a></p>
         </ul>
     </section>
+    <div id="modalImagen" class="modal" style="display: none";>
+    <span class="cerrar" onclick="cerrarImagen()">&times;</span>
+    <img class="modal-contenido" id="imagenAmpliada" src="">
+</div>
 </body>
 </html>
