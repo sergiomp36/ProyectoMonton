@@ -48,6 +48,7 @@ public class Menu {
 		imprimirPaisesEscoger();
 		System.out.print("\n"+equipo.getNombre()+", introduzca el nombre del pais: ");
 		paisEscogido = input.next().toUpperCase();
+		System.out.println();
 		while (!Utilities.comprobarPaisesRegex(paisEscogido) || Utilities.contains(paisesEscogidos, paisEscogido)) {
 			System.out.println("ERROR: Pais introducido incorrecto.\nInténtalo de nuevo\n");
 			paisEscogido = input.next().toUpperCase();
@@ -60,18 +61,18 @@ public class Menu {
 			if(!paisesEscogidos.contains(pais.getPaises()[i])) {
 				System.out.println(pais.getPaises()[i]);
 			}
-		}
+		}  
 	}
 	
 	
 	
 	public int menuAtacarDefender(Equipo equipo, int numRonda) {
 		if (numRonda%3!=0) {
-			System.out.println("\n(1) Atacar\n(2) Defender");
+			System.out.println("(1) Atacar\n(2) Defender");
 			System.out.print(equipo.getNombre()+", escoge una opción: ");
 			opcion=input.nextInt();
 			while(opcion<1||opcion>2) {
-				System.out.print("Error: Intñentalo de nuevo: ");
+				System.out.print("Error: Inténtalo de nuevo: ");
 				opcion=input.nextInt();
 			}
 			return opcion;
@@ -81,23 +82,50 @@ public class Menu {
 			System.out.print(equipo.getNombre()+", escoge una opción: ");
 			opcion=input.nextInt();
 			while(opcion<1||opcion>3) {
-				System.out.print("Error: Intñentalo de nuevo: ");
+				System.out.print("Error: Inténtalo de nuevo: ");
 				opcion=input.nextInt();
 			}
 			return opcion;
-		}
-		
+		}		
 	}
 	
-	public int misilesAtaque(Equipo equipo) {
-		System.out.print("Con cuantos misiles quieres atacar: ");
+	public int numeroMisilesAtaque(Equipo equipo) {
+		System.out.print("Con cuantos misiles quieres atacar en total: ");
 		int misilesOpcion=input.nextInt();
-		if (misilesOpcion>)
+		while (misilesOpcion>equipo.getPais().getMisilesMaxAtaque()) {
+			System.out.println("ERROR: Número introducido incorrecto.");
+			System.out.println("Inténtelo de nuevo: ");
+			misilesOpcion=input.nextInt();
+		}
+		return misilesOpcion;
+	}
+	
+
+	public Equipo escogerEquipoAtacar(ArrayList<Equipo> participantes, Equipo equipo) {
+		System.out.println(equipo.getNombre()+", escoge un equipo a atacar: ");
+		for (int i = 0 ; i < participantes.size() ; i++) {
+			if (!participantes.get(i).equals(equipo)) {
+				System.out.println("("+(i+1)+") "+participantes.get(i).getNombre()+"("+participantes.get(i).getPais().getNombrePais()+")");
+			}
+		}
+		int opcion = input.nextInt();
+		while (opcion<1||opcion>participantes.size()) {
+			System.out.print("ERROR: Opción incorrecta.\nInténtalo de nuevo: ");
+			opcion = input.nextInt();
+		}
+		return participantes.get(opcion-1);
 	}
 	
 	
-	
-	
+	public int cuantosMisilesAtacar(Equipo equipo) {
+		System.out.print("Introduce con cuantos misiles: ");
+		int x = input.nextInt();
+		while (x>equipo.getPais().getMisilesAtaque()) {
+			System.out.print("ERROR: Número de misiles incorrectos.\nInténtalo de nuevo: ");
+			x=input.nextInt();
+		}
+		return x;
+	}
 	
 	
 	

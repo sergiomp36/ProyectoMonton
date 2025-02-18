@@ -20,10 +20,6 @@ public class Utilities {
 		}
 	}
 
-	public static void mostrarGanador() {
-		
-	}
-	
 	
 	public static void leerReglas() {
 		try {
@@ -100,5 +96,15 @@ public class Utilities {
         Matcher matcher = pattern.matcher(texto); // Crear el matcher para la cadena
         return matcher.matches(); // Verificar si el texto coincide completamente con la regex
     }
-
+	
+	public static void imprimirValoresInicioRonda(ArrayList<Equipo> participantes) {
+		for (int i = 0 ; i < participantes.size() ; i++) {
+			System.out.println(participantes.get(i).getNombre()+", dispones de "+participantes.get(i).getPais().getVidasActuales()+" vidas.");
+		}
+	}
+	
+	public static void imprimirValoresEntreAtaques(Equipo atacante) {
+		System.out.println(atacante.getNombre()+", te quedan "+atacante.getPais().getMisilesAtaque()
+				+" misiles de ataque y "+atacante.getPais().getMisilesDefensa()+" misiles de defensa.");
+	}
 }

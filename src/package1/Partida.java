@@ -14,10 +14,6 @@ public class Partida {
 	private ArrayList<Equipo> participantes = new ArrayList<>(); 
 	
 	
-	
-	//CONSTRUCTOR
-	
-	
 	//MÉTODO PRINCIPAL DE LA CLASE
 	public void jugar(int numJugadores) {
 		iniciarPartida(numJugadores);
@@ -26,33 +22,30 @@ public class Partida {
 			ronda();
 			numRonda++;
 		}
-		Utilities.mostrarGanador();
+		System.out.println("EL GANADOR ES: "+participantes.get(0).getNombre());
 	}
 	
 	//MÉTODO RONDA
-	
 	private void ronda() {
-		System.out.println("RONDA "+numRonda);
+		System.out.println("\nRONDA "+numRonda);
+		Utilities.imprimirValoresInicioRonda(participantes);
 		imprimirClima();
+		resetAtacadosRonda();
+		actualizarVidasAux();
 		for (int i = 0; i < jugadoresVivos() ; i++) {
-			repartirMisilesMaxAtaque(participantes.get(i));
+			repartirMisilesMAXAtaque(participantes.get(i));
 			int opc = menu.menuAtacarDefender(participantes.get(i), numRonda);
 			if(opc==1) {
-				
+				atacar(participantes.get(i));
 			}
 			else if(opc==2) {
-				
+				misilesDefensa(participantes.get(i));
 			}
 			else {
-				
+				//AYUDA ALIADA
 			}
 		}
-		
-	}
-	
-	
-	
-	
+	}	
 	
 	//MÉTODOS AUXILIARES
 	private void iniciarPartida(int numJugadores) {
@@ -78,7 +71,7 @@ public class Partida {
     }	
 	
 	
-	private void repartirMisilesMaxAtaque(Equipo equipo) {
+	private void repartirMisilesMAXAtaque(Equipo equipo) {
 		if (equipo.getPais().getNombrePais().equals("ALEMANIA")) {
     		if (climaRonda.equals("LLUVIA")) 
     			equipo.getPais().setMisilesMaxAtaque(70);
@@ -95,6 +88,43 @@ public class Partida {
 	
 	
 	
+	private void atacar(Equipo equipo){
+		repartirMisilesAtaque(equipo);
+		while (equipo.getPais().getMisilesAtaque()>0) {
+			Utilities.imprimirValoresEntreAtaques(equipo);
+			Equipo objetivo = menu.escogerEquipoAtacar(participantes,equipo);
+			objetivo.setAtacadoEnRonda(true);
+			evaluarAtaque(objetivo, menu.cuantosMisilesAtacar(equipo), equipo);
+			evaluarDefensa(objetivo);
+		}
+	}
+	
+	private void repartirMisilesAtaque(Equipo equipo) {
+		int aux = menu.numeroMisilesAtaque(equipo);
+		equipo.getPais().setMisilesAtaque(aux);
+		equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesAtaque()-aux)/2);
+	}
+	
+	
+	private void misilesDefensa(Equipo equipo){
+		equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesMaxAtaque()/2);
+	}
+	
+	
+	private void evaluarAtaque(Equipo objetivo, int misiles, Equipo atacante) {
+		objetivo.getPais().setVidasActuales(objetivo.getPais().getVidasActuales()-misiles);
+		atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque()-misiles);
+	}
+	
+	private void evaluarDefensa(Equipo equipo) {
+		if ((equipo.getPais().getVidasActuales()+equipo.getPais().getMisilesDefensa())>equipo.getVidasInicioRonda()) {
+			equipo.getPais().setVidasActuales(equipo.getVidasInicioRonda());
+			equipo.getPais().setMisilesDefensa(equipo.getPais().getVidasActuales()+equipo.getPais().getMisilesDefensa()-equipo.getVidasInicioRonda());
+		}else {
+			equipo.getPais().setVidasActuales(equipo.getPais().getVidasActuales()+equipo.getPais().getMisilesDefensa());
+			equipo.getPais().setMisilesDefensa(0);
+		}
+	}
 	
 	private String establecerClimaRonda() {
 		int aux = r.nextInt(8);
@@ -102,12 +132,12 @@ public class Partida {
 			return climas[aux];
 		}
 		else {
-			return null;
+			return "";
 		}
 	}
 	private void imprimirClima() {
-		if(climaRonda!=null) {
-			System.out.println("El clima especial en la ronda"+numRonda+" es: "+climaRonda);
+		if(climaRonda!="") {
+			System.out.println("El clima especial en la ronda "+numRonda+" es: "+climaRonda);
 		}
 		else {
 			System.out.println("No hay clima especial en la ronda "+numRonda);
@@ -119,11 +149,24 @@ public class Partida {
 		for (int i=0; i<participantes.size();i++) {
 			if (!participantes.get(i).isMuerte()) {
 				aux++;
+			}else {
+				participantes.remove(i);
 			}
 		}
 		return aux;
 	}
 	
+	private void resetAtacadosRonda() {
+		for (int i = 0 ; i < jugadoresVivos() ; i++) {
+			participantes.get(i).setAtacadoEnRonda(false);
+		}
+	}
+	
+	private void actualizarVidasAux() {
+		for (int i = 0 ; i < jugadoresVivos() ; i++) {
+			participantes.get(i).setVidasInicioRonda(participantes.get(i).getPais().getVidasActuales());
+		}
+	}
 	
 	
 	
