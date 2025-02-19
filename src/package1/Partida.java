@@ -33,6 +33,7 @@ public class Partida {
 		resetAtacadosRonda();
 		actualizarVidasAux();
 		for (int i = 0; i < jugadoresVivos() ; i++) {
+			escudoItalia(participantes.get(i));
 			repartirMisilesMAXAtaque(participantes.get(i));
 			int opc = menu.menuAtacarDefender(participantes.get(i), numRonda);
 			if(opc==1) {
@@ -73,7 +74,7 @@ public class Partida {
 	
 	private void repartirMisilesMAXAtaque(Equipo equipo) {
 		if (equipo.getPais().getNombrePais().equals("ALEMANIA")) {
-    		if (climaRonda.equals("LLUVIA")) 
+    		if (climaRonda.equals("NIEBLA")) 
     			equipo.getPais().setMisilesMaxAtaque(70);
     		else 
     			equipo.getPais().setMisilesMaxAtaque(60);
@@ -112,9 +113,33 @@ public class Partida {
 	
 	
 	private void evaluarAtaque(Equipo objetivo, int misiles, Equipo atacante) {
+		switch (climaRonda) {
+		case ("NIEBLA"):
+			int aux = r.nextInt(100);
+			if (aux<=80) {
+				evaluarAtaqueAUX(objetivo, misiles, atacante);
+			}
+			else {
+				System.out.println("\nATAQUE FALLIDO POR NIEBLA\n");
+			}
+			break;
+		
+		case ("CALOR"):
+			misiles=misiles+10;
+			evaluarAtaqueAUX(objetivo, misiles, atacante);
+		
+		default:
+			evaluarAtaqueAUX(objetivo, misiles, atacante);
+		}
+		
+	}
+	
+	private void evaluarAtaqueAUX(Equipo objetivo, int misiles, Equipo atacante) {
 		objetivo.getPais().setVidasActuales(objetivo.getPais().getVidasActuales()-misiles);
 		atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque()-misiles);
 	}
+	
+	
 	
 	private void evaluarDefensa(Equipo equipo) {
 		if ((equipo.getPais().getVidasActuales()+equipo.getPais().getMisilesDefensa())>equipo.getVidasInicioRonda()) {
@@ -168,6 +193,12 @@ public class Partida {
 		}
 	}
 	
-	
+	private void escudoItalia(Equipo equipo) {
+		if (equipo.getPais().getNombrePais().equals("ITALIA")) {
+			if(numRonda%2==0) {
+				equipo.getPais().setEscudo(equipo.getPais().getEscudo()+5);
+			}
+		}
+	}
 	
 }

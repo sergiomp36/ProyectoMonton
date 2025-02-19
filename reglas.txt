@@ -29,7 +29,7 @@ Los climas afectan a la partida de diferentes formas:
 
 Niebla: 20% de posibilidad de fallar ataques.
 Lluvia: Baja la defensa en 10.
-Alto calor: Aumenta el daño en 10.
+Calor: Aumenta el daño en 10.
 Nieve: Impide pedir ayuda a aliados.
 Terremoto (muy raro): Hace 5 de daño al jugador por cada turno activo.
 La partida podrá ser guardada para poder continuarla en otra ocasión.

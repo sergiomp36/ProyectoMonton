@@ -12,7 +12,7 @@ public class Main {
 		if (x==0)
 			System.exit(0);
 		
-		else {
+		else if (x==1){
 			Partida partida = new Partida();
 			partida.jugar(menu.menuNumJugadores());
 		}
