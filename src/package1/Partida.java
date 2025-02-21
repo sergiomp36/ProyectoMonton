@@ -22,7 +22,13 @@ public class Partida {
 			ronda();
 			numRonda++;
 		}
-		System.out.println("EL GANADOR ES: "+participantes.get(0).getNombre());
+		if (jugadoresVivos()>0) {
+			System.out.println("EL GANADOR ES: "+participantes.get(0).getNombre());
+		}
+		else {
+			System.out.println("EMPATE: Todos los jugadores han muerto");
+		}
+		
 	}
 	
 	//MÉTODO RONDA
@@ -180,16 +186,17 @@ public class Partida {
 	}
 	
 	private int jugadoresVivos() {
-		int aux=0;
-		for (int i=0; i<participantes.size();i++) {
-			if (!participantes.get(i).isMuerte()) {
-				aux++;
-			}else {
-				participantes.remove(i);
-			}
-		}
-		return aux;
+	    int aux = 0;
+	    for (int i = participantes.size() - 1; i >= 0; i--) {
+	        if (!participantes.get(i).isMuerte()) {
+	            aux++;
+	        } else {
+	            participantes.remove(i);
+	        }
+	    }
+	    return aux;
 	}
+
 	
 	private void resetAtacadosRonda() {
 		for (int i = 0 ; i < jugadoresVivos() ; i++) {
@@ -217,7 +224,9 @@ public class Partida {
 				participantes.get(i).getPais().setVidasActuales(participantes.get(i).getPais().getVidasActuales()-5);		
 			}
 			System.out.println("TERREMOTO! Todos los jugadores reciben 5 de daño.");
+			Utilities.imprimirValoresInicioRonda(participantes);
 		}
+		
 	}
 	
 	private void matarMuertos() {
