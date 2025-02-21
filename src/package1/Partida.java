@@ -17,7 +17,7 @@ public class Partida {
 	//MÉTODO PRINCIPAL DE LA CLASE
 	public void jugar(int numJugadores) {
 		iniciarPartida(numJugadores);
-		while(jugadoresVivos()>1) {
+		while(jugadoresVivos()>=1) {
 			climaRonda=establecerClimaRonda();
 			ronda();
 			numRonda++;
@@ -30,6 +30,7 @@ public class Partida {
 		System.out.println("\nRONDA "+numRonda);
 		Utilities.imprimirValoresInicioRonda(participantes);
 		imprimirClima();
+		climaTerremoto();
 		resetAtacadosRonda();
 		actualizarVidasAux();
 		for (int i = 0; i < jugadoresVivos() ; i++) {
@@ -46,6 +47,7 @@ public class Partida {
 				//AYUDA ALIADA
 			}
 		}
+		matarMuertos();
 	}	
 	
 	//MÉTODOS AUXILIARES
@@ -103,12 +105,19 @@ public class Partida {
 	private void repartirMisilesAtaque(Equipo equipo) {
 		int aux = menu.numeroMisilesAtaque(equipo);
 		equipo.getPais().setMisilesAtaque(aux);
-		equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesAtaque()-aux)/2);
+		if (climaRonda.equals("LLUVIA")) {
+			equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesMaxAtaque()-aux)/2-10);
+		}
+		else {
+			equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesMaxAtaque()-aux)/2);
+		}
+		
 	}
 	
 	
 	private void misilesDefensa(Equipo equipo){
 		equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesMaxAtaque()/2);
+		System.out.println(equipo.getNombre()+", dispones de "+equipo.getPais().getMisilesDefensa()+" misiles de defensa.");
 	}
 	
 	
@@ -121,6 +130,7 @@ public class Partida {
 			}
 			else {
 				System.out.println("\nATAQUE FALLIDO POR NIEBLA\n");
+				atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque()-misiles);
 			}
 			break;
 		
@@ -201,4 +211,22 @@ public class Partida {
 		}
 	}
 	
+	private void climaTerremoto() {
+		if (climaRonda.equals("TERREMOTO")) {
+			for (int i = 0 ; i < participantes.size() ; i++) {
+				participantes.get(i).getPais().setVidasActuales(participantes.get(i).getPais().getVidasActuales()-5);		
+			}
+			System.out.println("TERREMOTO! Todos los jugadores reciben 5 de daño.");
+		}
+	}
+	
+	private void matarMuertos() {
+		for (int i = 0 ; i < participantes.size() ; i++) {
+			if (participantes.get(i).getPais().getVidasActuales()<=0) {
+				participantes.get(i).setMuerte(true);
+				System.out.println(participantes.get(i).getNombre()+" ha muerto");
+				
+			}
+		}
+	}
 }
