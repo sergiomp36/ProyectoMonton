@@ -3,8 +3,9 @@ package package1;
 public class Main {
 	
 	public static void main(String[] args) {
+		Marco marcoGeneral = new Marco();
 		Menu menu = new Menu();
-		
+		AudioPlayer.ReproducirAudio();
 		int x;
 		
 		do {
@@ -15,6 +16,7 @@ public class Main {
 		else if (x==1){
 			Partida partida = new Partida();
 			partida.jugar(menu.menuNumJugadores());
+			
 		}
 		
 		}while(x!=0);
@@ -22,4 +24,6 @@ public class Main {
 		
 	}
 
+	
 }
+
