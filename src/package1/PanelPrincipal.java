@@ -19,12 +19,12 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 
         fondo = new ImageIcon("fondo.jpg").getImage(); 
 
-        botonJugar = new JButton("Jugar");
-        botonReglas = new JButton("Reglas");
-        botonInfo = new JButton("Información");
-        botonCargar = new JButton("Cargar partida");
-        botonSalir = new JButton("Salir");
-        areaDeTexto = new JTextArea(); 
+        this.botonJugar = new JButton("Jugar");
+        this.botonReglas = new JButton("Reglas");
+        this.botonInfo = new JButton("Información");
+        this.botonCargar = new JButton("Cargar partida");
+        this.botonSalir = new JButton("Salir");
+        this.areaDeTexto = new JTextArea(20,50); 
 
         botonJugar.addActionListener(this);
         botonReglas.addActionListener(this);
