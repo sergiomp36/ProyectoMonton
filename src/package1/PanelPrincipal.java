@@ -8,23 +8,23 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class PanelPrincipal extends JPanel implements ActionListener {
-    private Image fondo;
+public class PanelPrincipal extends JPanel implements ActionListener, PanelNumJug.NumJugadoresListener {
     Menu menu = new Menu();
+    private Image fondo;
     JButton botonJugar, botonReglas, botonInfo, botonCargar, botonSalir;
     JTextArea areaDeTexto;
 
     PanelPrincipal() {
         setLayout(new FlowLayout());
 
-        fondo = new ImageIcon("fondo.jpg").getImage(); 
+        fondo = new ImageIcon("fondo.jpg").getImage();
 
         this.botonJugar = new JButton("Jugar");
         this.botonReglas = new JButton("Reglas");
         this.botonInfo = new JButton("Información");
         this.botonCargar = new JButton("Cargar partida");
         this.botonSalir = new JButton("Salir");
-        this.areaDeTexto = new JTextArea(20,50); 
+        this.areaDeTexto = new JTextArea(20,50);
 
         botonJugar.addActionListener(this);
         botonReglas.addActionListener(this);
@@ -47,12 +47,14 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    	//Cambiar
         if (e.getSource() == botonJugar) {
-            new Thread(() -> {
-                Partida partida = new Partida();
-                partida.jugar(menu.menuNumJugadores());
-            }).start();
+            JFrame marco = (JFrame)SwingUtilities.getWindowAncestor(this);
+            marco.remove(this);
+
+            PanelNumJug panelNumJug = new PanelNumJug();
+            panelNumJug.setListener(this); 
+            marco.add(panelNumJug);
+            marco.setVisible(true);
         }
 
         if (e.getSource() == botonReglas) {
@@ -87,13 +89,18 @@ public class PanelPrincipal extends JPanel implements ActionListener {
             }
         }
 
-        if (e.getSource() == botonCargar) {
-            // Aún no implementado
-        }
-
         if (e.getSource() == botonSalir) {
             System.exit(0);
         }
     }
-}
 
+    @Override
+    public void numeroSeleccionado(int numero) {
+        System.out.println("Número de jugadores seleccionado: " + numero);
+        Partida partida = new Partida();
+        partida.jugar(numero);
+        JFrame marco = (JFrame)SwingUtilities.getWindowAncestor(this);
+        marco.remove(this);
+        marco.setVisible(true);
+    }
+}

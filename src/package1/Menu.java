@@ -26,7 +26,7 @@ public class Menu {
 	}
 	
 	public int menuNumJugadores() {
-		System.out.print("\nIntroduzca el número de jugadores: ");
+		System.out.print("\nIntroduzca el número de jugadores entre 3 y 10: ");
 		opcion = input.nextInt();
 		while (opcion<3||opcion>10) {
 			System.out.println("Número de jugadores incorrecto.\nIntroduzca un número entre 3 y 10.");
