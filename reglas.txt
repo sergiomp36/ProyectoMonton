@@ -25,11 +25,13 @@ POLONIA: Consigue una ronda extra al llegar a 0 de vida.
 BÉLGICA: Consigue una habilidad aleatoria entre 4.
 DINAMARCA: Doble de vida, pero empieza con 10 misiles (que se van incrementando en 10 en cada ronda hasta el número normal de misiles).
 SUIZA: Mitad de vida, 40% de evasión.
+
 Los climas afectan a la partida de diferentes formas:
 
 Niebla: 20% de posibilidad de fallar ataques.
 Lluvia: Baja la defensa en 10.
 Calor: Aumenta el daño en 10.
 Nieve: Impide pedir ayuda a aliados.
-Terremoto (muy raro): Hace 5 de daño a todos los jugadores.
+Terremoto (muy raro): Hace 5 de daño a todos los jugadores cada ronda.
+
 La partida podrá ser guardada para poder continuarla en otra ocasión.
