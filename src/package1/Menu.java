@@ -90,7 +90,7 @@ public class Menu {
 	}
 	
 	public int numeroMisilesAtaque(Equipo equipo) {
-		System.out.print("Con cuantos misiles quieres atacar en total: ");
+		System.out.println("Con cuantos misiles quieres atacar en total (dispones de "+equipo.getPais().getMisilesMaxAtaque()+" misiles de ataque).");
 		int misilesOpcion=input.nextInt();
 		while (misilesOpcion>equipo.getPais().getMisilesMaxAtaque()) {
 			System.out.println("ERROR: Número introducido incorrecto.");
