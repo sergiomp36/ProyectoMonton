@@ -9,7 +9,6 @@ public class Marco extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
 
-        // Creamos el panel principal y le pasamos el JFrame (este mismo marco)
         PanelPrincipal panelPrincipal = new PanelPrincipal();
         setContentPane(panelPrincipal);
 
