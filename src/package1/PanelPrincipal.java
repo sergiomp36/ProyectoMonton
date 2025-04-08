@@ -97,10 +97,16 @@ public class PanelPrincipal extends JPanel implements ActionListener, PanelNumJu
     @Override
     public void numeroSeleccionado(int numero) {
         System.out.println("Número de jugadores seleccionado: " + numero);
-        Partida partida = new Partida();
-        partida.jugar(numero);
-        JFrame marco = (JFrame)SwingUtilities.getWindowAncestor(this);
-        marco.remove(this);
-        marco.setVisible(true);
+        
+        // Crear el nuevo panel
+        PanelEquipos panelEquipos = new PanelEquipos(numero);
+        
+        // Cambiar panel en la ventana
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        marco.getContentPane().removeAll(); // ✅ elimina todo lo anterior correctamente
+        marco.getContentPane().add(panelEquipos);
+        marco.revalidate(); // ✅ fuerza nueva disposición
+        marco.repaint();    // ✅ fuerza redibujo
     }
+
 }
