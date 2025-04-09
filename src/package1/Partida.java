@@ -21,7 +21,7 @@ public class Partida {
 			ronda();
 			numRonda++;
 		}
-		if (jugadoresVivos() > 0) {
+		if (jugadoresVivos() == 1) {
 			System.out.println("EL GANADOR ES: " + participantes.get(0).getNombre());
 		} else {
 			System.out.println("EMPATE: Todos los jugadores han muerto");
