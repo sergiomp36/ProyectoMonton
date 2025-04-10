@@ -113,5 +113,6 @@ public class PanelEquipos extends JPanel implements ActionListener {
     	        }
         }
     	    
+    	    
     }
 }
