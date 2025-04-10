@@ -9,7 +9,8 @@ import javax.sound.sampled.Clip;
 public class AudioPlayer {
 
 	public static void ReproducirAudio() {
-		try {
+
+	    try {
 	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("audio.wav"));
 	        Clip clip = AudioSystem.getClip();
 	        clip.open(audioInputStream);
@@ -19,6 +20,6 @@ public class AudioPlayer {
 	        System.out.println("Error with playing sound.");
 	        ex.printStackTrace();
 	    }
-	}
 	
+}
 }
