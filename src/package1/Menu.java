@@ -89,8 +89,20 @@ public class Menu {
 		}		
 	}
 	
+	public int menuAtacarDefender(Equipo equipo) {
+			System.out.println("(1) Atacar\n(2) Defender");
+			System.out.print(equipo.getNombre()+", escoge una opción: ");
+			opcion=input.nextInt();
+			while(opcion<1||opcion>2) {
+				System.out.print("Error: Inténtalo de nuevo: ");
+				opcion=input.nextInt();
+			}
+			return opcion;
+			
+	}
+	
 	public int numeroMisilesAtaque(Equipo equipo) {
-		System.out.print("Con cuantos misiles quieres atacar en total: ");
+		System.out.println("Con cuantos misiles quieres atacar en total (dispones de "+equipo.getPais().getMisilesMaxAtaque()+" misiles de ataque).");
 		int misilesOpcion=input.nextInt();
 		while (misilesOpcion>equipo.getPais().getMisilesMaxAtaque()) {
 			System.out.println("ERROR: Número introducido incorrecto.");
