@@ -10,8 +10,6 @@ Esto causará uno de los siguientes efectos de manera aleatoria:
 
 Conseguir 25 misiles para atacar extra, 25%.
 Conseguir 30 misiles para defender extra, 25%.
-Conseguir un 20% de evasión, 25%.
-Invulnerabilidad durante ese turno, 10%.
 ¡Traición aliada! Recibir 10 puntos de daño, 15%.
 Puedes elegir entre varios países, cada país tiene una habilidad pasiva diferente:
 

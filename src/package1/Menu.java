@@ -66,8 +66,8 @@ public class Menu {
 	
 	
 	
-	public int menuAtacarDefender(Equipo equipo, int numRonda) {
-		if (numRonda%3!=0) {
+	public int menuAtacarDefender(Equipo equipo, int numRonda, String climaRonda, boolean seleccionadaAyuda) {
+		if (numRonda%3!=0 || seleccionadaAyuda==true) {
 			System.out.println("(1) Atacar\n(2) Defender");
 			System.out.print(equipo.getNombre()+", escoge una opción: ");
 			opcion=input.nextInt();
@@ -78,14 +78,21 @@ public class Menu {
 			return opcion;
 		}
 		else {
-			System.out.println("\n(1) Atacar\n(2) Defender\n(3) Ayuda aliada");
-			System.out.print(equipo.getNombre()+", escoge una opción: ");
-			opcion=input.nextInt();
-			while(opcion<1||opcion>3) {
-				System.out.print("Error: Inténtalo de nuevo: ");
+			if (!climaRonda.equals("NIEVE")) {
+				System.out.println("\n(1) Atacar\n(2) Defender\n(3) Ayuda aliada");
+				System.out.print(equipo.getNombre()+", escoge una opción: ");
 				opcion=input.nextInt();
+				while(opcion<1||opcion>3) {
+					System.out.print("Error: Inténtalo de nuevo: ");
+					opcion=input.nextInt();
+				}
+				return opcion;
 			}
-			return opcion;
+			else {
+				System.out.println("AYUDA ALIADA no disponible en NIEVE");
+				climaRonda = climaRonda + " ";
+				return menuAtacarDefender(equipo,numRonda,climaRonda, seleccionadaAyuda);
+			}
 		}		
 	}
 	

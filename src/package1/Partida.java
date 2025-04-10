@@ -40,14 +40,19 @@ public class Partida {
 		for (int i = 0; i < jugadoresVivos(); i++) {
 			escudoItalia(participantes.get(i).getPais());
 			repartirMisilesMAXAtaque(participantes.get(i));
-			int opc = menu.menuAtacarDefender(participantes.get(i), numRonda);
-			if (opc == 1) {
-				atacar(participantes.get(i));
-			} else if (opc == 2) {
-				misilesDefensa(participantes.get(i));
-			} else {
-				// AYUDA ALIADA
-			}
+			int opc;
+			boolean seleccionadaAyuda = false;
+			do {
+				opc = menu.menuAtacarDefender(participantes.get(i), numRonda, climaRonda, seleccionadaAyuda);
+				if (opc == 1) {
+					atacar(participantes.get(i));
+				} else if (opc == 2) {
+					misilesDefensa(participantes.get(i));
+				} else {
+					seleccionadaAyuda=true;
+					ayudaAliada(participantes.get(i));
+				}
+			}while(opc==3);
 		}
 		matarMuertos();
 	}
@@ -277,7 +282,42 @@ public class Partida {
 		}
 	}
 	
+	//METODOS AYUDA ALIADA
+	private int randomAyudaAliada() {
+		int aux = r.nextInt(1,10);
+		if (aux < 4) {
+			return 0;
+		}else if (aux>=4 && aux <8) {
+			return 1;
+		}else {
+			return 2;
+		}
+	}
 	
-
+	private void ayudaAliada(Equipo equipo) {
+		int random = randomAyudaAliada();
+		switch (random) {
+		case 0:
+			misilesAtaqueAA(equipo);
+			break;
+		case 1:
+			misilesDefensaAA(equipo);
+			break;
+		default:
+			traicionAliadaAA(equipo);
+		}
+	}
+	
+	private void misilesAtaqueAA(Equipo equipo) {
+		equipo.getPais().setMisilesMaxAtaque(equipo.getPais().getMisilesMaxAtaque()+25);
+	}
+	
+	private void misilesDefensaAA(Equipo equipo) {
+		equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+30);
+	}
+	
+	private void traicionAliadaAA(Equipo equipo) {
+		equipo.getPais().setVidasActuales(equipo.getPais().getVidasActuales()-10);
+	}
 }
   
