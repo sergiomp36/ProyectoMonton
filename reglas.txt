@@ -23,7 +23,7 @@ ITALIA: Comienza con dos tercios de la vida máxima y cada 2 rondas genera autom
 HUNGRÍA: Si usa todos los recursos para defender, se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).
 POLONIA: Consigue una ronda extra al llegar a 0 de vida.
 BÉLGICA: Consigue una habilidad aleatoria entre 4.
-DINAMARCA: Doble de vida, pero empieza con 10 misiles (que se van incrementando en 10 en cada ronda hasta el número normal de misiles).
+DINAMARCA: Doble de vida, pero empieza con 10 misiles (que se van incrementando en 10 en cada ronda hasta el número normal de misiles que son 50).
 SUIZA: Mitad de vida, 40% de evasión.
 
 Los climas afectan a la partida de diferentes formas:
