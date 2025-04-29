@@ -8,7 +8,7 @@ public class Pais {
     private int misilesAtaque;
     private int misilesDefensa;
     private int misilesMaxAtaque;
-    private int escudo; //pasiva Italia
+    private int danioRecibido;
 	
     private String[] paises = {"ALEMANIA", "AUSTRIA", "FRANCIA", "YUGOSLAVIA", "ITALIA", "HUNGRÍA", "POLONIA", "BÉLGICA", "DINAMARCA", "SUIZA"}; 
     
@@ -66,15 +66,12 @@ public class Pais {
 	}
 
 	public void setMisilesDefensa(int misilesDefensa) {
-		this.misilesDefensa = misilesDefensa;
-	}
-
-	public int getEscudo() {
-		return escudo;
-	}
-
-	public void setEscudo(int escudo) {
-		this.escudo = escudo;
+		if (misilesDefensa<=0) {
+			this.misilesDefensa=0;
+		}
+		else {
+			this.misilesDefensa = misilesDefensa;
+		}
 	}
 
 	public String[] getPaises() {
@@ -91,6 +88,14 @@ public class Pais {
 
 	public void setMisilesMaxAtaque(int misilesAux) {
 		this.misilesMaxAtaque = misilesAux;
+	}
+	
+	public int getDanioRecibido() {
+		return danioRecibido;
+	}
+
+	public void setDanioRecibido(int danioRecibido) {
+		this.danioRecibido = danioRecibido;
 	}
     
 	

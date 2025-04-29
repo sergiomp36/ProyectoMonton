@@ -30,6 +30,6 @@ Niebla: 20% de posibilidad de fallar ataques.
 Lluvia: Baja la defensa en 10.
 Calor: Aumenta el daño en 10.
 Nieve: Impide pedir ayuda a aliados.
-Terremoto (muy raro): Hace 5 de daño a todos los jugadores cada ronda.
+Terremoto: Hace 5 de daño a todos los jugadores cada ronda.
 
 La partida podrá ser guardada para poder continuarla en otra ocasión.

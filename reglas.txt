@@ -19,7 +19,7 @@ ALEMANIA: 10 más de misiles al atacar, 10 extra en niebla.
 AUSTRIA: 10 más al defender. 10 extra en lluvia.
 FRANCIA: 60 más de vida máxima, 5% posibilidades de fallar el ataque.
 YUGOSLAVIA: 20% más de daño realizado y 10% de daño recibido en climas especiales.
-ITALIA: Cada 2 rondas genera automáticamente 5 de escudo.
+ITALIA: Comienza con dos tercios de la vida máxima y cada 2 rondas genera automáticamente 5 de vida.
 HUNGRÍA: Si usa todos los recursos para defender, se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).
 POLONIA: Consigue una ronda extra al llegar a 0 de vida.
 BÉLGICA: Consigue una habilidad aleatoria entre 4.
@@ -32,6 +32,6 @@ Niebla: 20% de posibilidad de fallar ataques.
 Lluvia: Baja la defensa en 10.
 Calor: Aumenta el daño en 10.
 Nieve: Impide pedir ayuda a aliados.
-Terremoto (muy raro): Hace 5 de daño a todos los jugadores cada ronda.
+Terremoto: Hace 5 de daño a todos los jugadores cada ronda.
 
 La partida podrá ser guardada para poder continuarla en otra ocasión.

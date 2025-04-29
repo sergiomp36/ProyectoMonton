@@ -16,7 +16,7 @@ public class Partida {
 	// MÉTODO PRINCIPAL DE LA CLASE
 	public void jugar(int numJugadores) {
 		iniciarPartida(numJugadores);
-		while (jugadoresVivos() >= 1) {
+		while (jugadoresVivos() > 1) {
 			climaRonda = establecerClimaRonda();
 			ronda();
 			numRonda++;
@@ -35,11 +35,12 @@ public class Partida {
 		Utilities.imprimirValoresInicioRonda(participantes);
 		imprimirClima();
 		climaTerremoto();
-		resetAtacadosRonda();
+		resetAtacadosRondaYDanio();
 		actualizarVidasInicioRonda();
 		for (int i = 0; i < jugadoresVivos(); i++) {
-			escudoItalia(participantes.get(i).getPais());
+			vidaItalia(participantes.get(i));
 			repartirMisilesMAXAtaque(participantes.get(i));
+			resetMisilesDefensa(participantes.get(i));
 			int opc;
 			boolean seleccionadaAyuda = false;
 			do {
@@ -54,6 +55,7 @@ public class Partida {
 				}
 			}while(opc==3);
 		}
+		evaluarDanio();
 		matarMuertos();
 	}
 
@@ -100,7 +102,6 @@ public class Partida {
 			Equipo objetivo = menu.escogerEquipoAtacar(participantes, equipo);
 			objetivo.setAtacadoEnRonda(true);
 			ataque(objetivo, menu.cuantosMisilesAtacar(equipo), equipo);
-			evaluarDefensa(objetivo);
 		}
 	}
 
@@ -108,9 +109,9 @@ public class Partida {
 		int aux = menu.numeroMisilesAtaque(equipo);
 		equipo.getPais().setMisilesAtaque(aux);
 		if (climaRonda.equals("LLUVIA")) {
-			equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesMaxAtaque() - aux) / 2 - 10);
+			equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() - aux) / 2 - 10));
 		} else {
-			equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesMaxAtaque() - aux) / 2);
+			equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() - aux) / 2));
 		}
 
 	}
@@ -176,11 +177,11 @@ public class Partida {
 		switch(atacante.getPais().getNombrePais()) {
 		case ("FRANCIA"):
 			int rando = r.nextInt(100);
-			if (rando >= 95) {
+			if (rando < 95) {
 				evaluarAtaqueAUX(objetivo, misiles, atacante);
 			} else {
 				atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque() - misiles);
-				System.out.println("Ataque fallido!");
+				System.out.println("Ataque fallido! FRANCIA ha fallado el ataque.");
 			}
 			break;
 		case ("YUGOSLAVIA"):
@@ -193,20 +194,14 @@ public class Partida {
 	}
 
 	private void evaluarAtaqueAUX(Equipo objetivo, int misiles, Equipo atacante) {
-		objetivo.getPais().setVidasActuales(objetivo.getPais().getVidasActuales() - misiles);
+		objetivo.getPais().setDanioRecibido(objetivo.getPais().getDanioRecibido()+misiles);
 		atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque() - misiles);
 	}
 
-	private void evaluarDefensa(Equipo equipo) {
-		Pais pais = equipo.getPais();
-		
-		if ((pais.getVidasActuales() + pais.getMisilesDefensa()) > equipo.getVidasInicioRonda()) {
-			pais.setVidasActuales(equipo.getVidasInicioRonda());
-			pais.setMisilesDefensa(pais.getVidasActuales()+ pais.getMisilesDefensa() - equipo.getVidasInicioRonda());
-		}
-		else {
-			pais.setVidasActuales(pais.getVidasActuales() + pais.getMisilesDefensa());
-			pais.setMisilesDefensa(0);
+	private void evaluarDanio() {
+		for (int i = 0 ; i < participantes.size() ; i++) {
+			Pais pais = participantes.get(i).getPais();
+			pais.setVidasActuales(pais.getVidasActuales()-pais.getDanioRecibido());
 		}
 	}
 
@@ -239,9 +234,10 @@ public class Partida {
 		return aux;
 	}
 
-	private void resetAtacadosRonda() {
+	private void resetAtacadosRondaYDanio() {
 		for (int i = 0; i < jugadoresVivos(); i++) {
 			participantes.get(i).setAtacadoEnRonda(false);
+			participantes.get(i).getPais().setDanioRecibido(0);
 		}
 	}
 
@@ -251,13 +247,12 @@ public class Partida {
 		}
 	}
 
-	private void escudoItalia(Pais pais) {
-		if (pais.getNombrePais().equals("ITALIA")) {
-			for (int i = 1 ; i <= numRonda ; i++) {
-				if (i%2==0) {
-					pais.setEscudo(pais.getEscudo()+5);
+	private void vidaItalia(Equipo equipo) {
+		if (equipo.getPais().getNombrePais().equals("ITALIA")) {
+				if (numRonda%2==0) {
+					equipo.getPais().setVidasActuales(equipo.getPais().getVidasActuales()+5);
+					System.out.println(equipo.getNombre()+", has recibido 5 de vida (ITALIA).");
 				}
-			}
 		}
 	}
 
@@ -277,7 +272,6 @@ public class Partida {
 			if (participantes.get(i).getPais().getVidasActuales() <= 0) {
 				participantes.get(i).setMuerte(true);
 				System.out.println(participantes.get(i).getNombre() + " ha muerto");
-
 			}
 		}
 	}
@@ -310,14 +304,21 @@ public class Partida {
 	
 	private void misilesAtaqueAA(Equipo equipo) {
 		equipo.getPais().setMisilesMaxAtaque(equipo.getPais().getMisilesMaxAtaque()+25);
+		System.out.println("Has recibido 25 misiles de ataque.");
 	}
 	
 	private void misilesDefensaAA(Equipo equipo) {
 		equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+30);
+		System.out.println("Has recibido 30 misiles de defensa.");
 	}
 	
 	private void traicionAliadaAA(Equipo equipo) {
 		equipo.getPais().setVidasActuales(equipo.getPais().getVidasActuales()-10);
+		System.out.println("TRAICIÓN: 10 menos de vida.");
+	}
+	
+	private void resetMisilesDefensa(Equipo equipo) {
+		equipo.getPais().setMisilesDefensa(0);
 	}
 }
   
