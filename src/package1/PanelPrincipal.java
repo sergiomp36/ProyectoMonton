@@ -13,6 +13,8 @@ public class PanelPrincipal extends JPanel implements ActionListener, PanelNumJu
     private Image fondo;
     JButton botonJugar, botonReglas, botonInfo, botonCargar, botonSalir;
     JTextArea areaDeTexto;
+    JScrollPane scrollTexto;
+    boolean panelCambiado = false;
 
     PanelPrincipal() {
         setLayout(new FlowLayout());
@@ -24,7 +26,10 @@ public class PanelPrincipal extends JPanel implements ActionListener, PanelNumJu
         this.botonInfo = new JButton("Información");
         this.botonCargar = new JButton("Cargar partida");
         this.botonSalir = new JButton("Salir");
-        this.areaDeTexto = new JTextArea(20,50);
+
+        this.areaDeTexto = new JTextArea(20, 50);
+        this.areaDeTexto.setEditable(false);
+        this.scrollTexto = new JScrollPane(areaDeTexto);
 
         botonJugar.addActionListener(this);
         botonReglas.addActionListener(this);
@@ -47,46 +52,31 @@ public class PanelPrincipal extends JPanel implements ActionListener, PanelNumJu
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botonJugar) {
-            JFrame marco = (JFrame)SwingUtilities.getWindowAncestor(this);
+        if (scrollTexto.getParent() != null) {
+            remove(scrollTexto);
+            revalidate();
+            repaint();
+        }
+
+        if (e.getSource() == botonJugar && !panelCambiado) {
+            panelCambiado = true; 
+
+            JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
             marco.remove(this);
 
             PanelNumJug panelNumJug = new PanelNumJug();
-            panelNumJug.setListener(this); 
+            panelNumJug.setListener(this);
             marco.add(panelNumJug);
-            marco.setVisible(true);
+            marco.revalidate();
+            marco.repaint();
         }
 
         if (e.getSource() == botonReglas) {
-            add(areaDeTexto);
-            areaDeTexto.setText(""); 
-            try {
-                File archivo = new File("reglas.txt");
-                Scanner scanner = new Scanner(archivo);
-                while (scanner.hasNextLine()) {
-                    areaDeTexto.append(scanner.nextLine() + "\n");
-                }
-                scanner.close();
-            } catch (FileNotFoundException e2) {
-                areaDeTexto.setText("Error: Archivo no encontrado.");
-                e2.printStackTrace();
-            }
+            mostrarTextoDesdeArchivo("reglas.txt");
         }
 
         if (e.getSource() == botonInfo) {
-            add(areaDeTexto);
-            areaDeTexto.setText(""); 
-            try {
-                File archivo = new File("informacion.txt");
-                Scanner scanner = new Scanner(archivo);
-                while (scanner.hasNextLine()) {
-                    areaDeTexto.append(scanner.nextLine() + "\n");
-                }
-                scanner.close();
-            } catch (FileNotFoundException e2) {
-                areaDeTexto.setText("Error: Archivo no encontrado.");
-                e2.printStackTrace();
-            }
+            mostrarTextoDesdeArchivo("informacion.txt");
         }
 
         if (e.getSource() == botonSalir) {
@@ -94,17 +84,46 @@ public class PanelPrincipal extends JPanel implements ActionListener, PanelNumJu
         }
     }
 
+    private void mostrarTextoDesdeArchivo(String nombreArchivo) {
+        if (scrollTexto.getParent() == null) {
+            add(scrollTexto);
+        }
+        areaDeTexto.setText("");
+        try {
+            File archivo = new File(nombreArchivo);
+            Scanner scanner = new Scanner(archivo);
+            while (scanner.hasNextLine()) {
+                areaDeTexto.append(scanner.nextLine() + "\n");
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            areaDeTexto.setText("Error: Archivo no encontrado.");
+            e.printStackTrace();
+        }
+        revalidate();
+        repaint();
+    }
+
     @Override
     public void numeroSeleccionado(int numero) {
         System.out.println("Número de jugadores seleccionado: " + numero);
-        
+
         PanelEquipos panelEquipos = new PanelEquipos(numero);
-        
+
         JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
-        marco.getContentPane().removeAll(); 
+        marco.getContentPane().removeAll();
         marco.getContentPane().add(panelEquipos);
-        marco.revalidate(); 
-        marco.repaint();   
+        marco.revalidate();
+        marco.repaint();
+    }
+    
+    public void mostrar() {
+        JFrame marco = (JFrame) SwingUtilities.getWindowAncestor(this);
+        marco.getContentPane().removeAll();
+        marco.getContentPane().add(this);
+        marco.revalidate();
+        marco.repaint();
     }
 
 }
+
