@@ -3,7 +3,6 @@ package package1;
 public class Main {
 	
 	public static void main(String[] args) {
-		Marco marcoGeneral = new Marco();
 		Menu menu = new Menu();
 		AudioPlayer.ReproducirAudio();
 		int x;
