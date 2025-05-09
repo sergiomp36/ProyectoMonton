@@ -102,4 +102,8 @@ public class PanelEquipos extends JPanel implements ActionListener {
             marco.repaint();
         }
     }
+    
+    public int getNumJugadores() {
+    	return numJugadores;
+    }
 }

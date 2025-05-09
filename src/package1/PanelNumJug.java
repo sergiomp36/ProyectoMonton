@@ -84,6 +84,7 @@ public class PanelNumJug extends JPanel implements ActionListener {
             listener.numeroSeleccionado(opcion);
         }
     }
+    
 }
 
 
