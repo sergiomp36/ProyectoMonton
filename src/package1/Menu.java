@@ -12,7 +12,7 @@ public class Menu {
 	
 	//MÉTODOS
 	public int menuInicial() {
-		System.out.println("------ COLD WAR ------");
+		System.out.println("------ RED CODE ------");
 		System.out.println("(1) Jugar\n(2) Reglas\n(3) Información\n(4) Cargar partida\n(0) Salir");
 		opcion=input.nextInt();
 		while (opcion<0||opcion>4) {
