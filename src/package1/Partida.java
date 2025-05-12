@@ -363,7 +363,7 @@ public class Partida {
         if (pais.getNombrePais().equals("ITALIA")) {
             for (int i = 1 ; i <= numRonda ; i++) {
                 if (i%2==0) {
-                    pais.setEscudo(pais.getEscudo()+5);
+                    pais.setVidasActuales(pais.getVidasActuales()+5);
                 }
             }
         }
