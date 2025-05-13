@@ -178,6 +178,8 @@ public class Partida {
     }
 
     private void repartirVidasIniciales(Equipo equipo) {
+    	int aux = 100+r.nextInt(300);
+    	
         if (equipo.getPais().getNombrePais().equals("FRANCIA")) {
             equipo.getPais().setVidasIniciales(260);
         } else if (equipo.getPais().getNombrePais().equals("DINAMARCA")) {
@@ -186,12 +188,19 @@ public class Partida {
             equipo.getPais().setVidasIniciales(100);
         } else if (equipo.getPais().getNombrePais().equals("ITALIA")) {
             equipo.getPais().setVidasIniciales(120);
-        }else {
+        } else if (equipo.getPais().getNombrePais().equals("HUNGRIA")) {
+            equipo.getPais().setVidasIniciales(150);
+        } else if (equipo.getPais().getNombrePais().equals("BELGICA")) {
+            equipo.getPais().setVidasIniciales(aux);
+        }
+        else {
             equipo.getPais().setVidasIniciales(200);
         }
     }
 
     private void repartirMisilesMAXAtaque(Equipo equipo) {
+    	int aux = 5+r.nextInt(75);
+    	
         if (equipo.getPais().getNombrePais().equals("ALEMANIA")) {
             if (climaRonda.equals("NIEBLA"))
                 equipo.getPais().setMisilesMaxAtaque(70);
@@ -199,7 +208,12 @@ public class Partida {
                 equipo.getPais().setMisilesMaxAtaque(60);
         } else if (equipo.getPais().getNombrePais().equals("DINAMARCA") && numRonda <= 5) {
             equipo.getPais().setMisilesMaxAtaque(10 * numRonda);
-        } else {
+        } else if (equipo.getPais().getNombrePais().equals("HUNGRIA")) {
+        	equipo.getPais().setMisilesMaxAtaque(35);
+        } else if (equipo.getPais().getNombrePais().equals("BELGICA")) {
+        	equipo.getPais().setMisilesMaxAtaque(aux);
+        }
+        else {
             equipo.getPais().setMisilesMaxAtaque(50);
         }
     }
@@ -234,7 +248,6 @@ public class Partida {
             }
         }else if (equipo.getPais().getNombrePais().equals("HUNGRIA")) {
         	equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2));
-        	equipo.getPais().setPasivaHungria(true);
         }
         else {
             equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2));
