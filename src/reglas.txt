@@ -5,7 +5,7 @@ Los misiles pueden dividirse para atacar a varios equipos a la vez.
 La defensa cuesta el doble de misiles que atacar.
 Los misiles pueden dividirse entre ataque y defensa.
 
-Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender. 
+Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender en l. 
 Esto causará uno de los siguientes efectos de manera aleatoria:
 
 Conseguir 25 misiles para atacar extra, 25%.
@@ -17,7 +17,7 @@ ALEMANIA: 10 más de misiles al atacar, 10 extra en niebla.
 AUSTRIA: 10 más al defender. 10 extra en lluvia.
 FRANCIA: 60 más de vida máxima, 5% posibilidades de fallar el ataque.
 YUGOSLAVIA: 20% más de daño realizado y 10% de daño recibido en climas especiales.
-ITALIA: Comienza con dos tercios de la vida máxima y cada 2 rondas genera automáticamente 5 de vida.
+ITALIA: Comienza con un 60% de la vida máxima y cada 2 rondas genera automáticamente 5 de vida.
 HUNGRÍA: Si usa todos los recursos para defender, se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).
 POLONIA: Consigue una ronda extra al llegar a 0 de vida.
 BÉLGICA: Consigue una habilidad aleatoria entre 4. (Copia a Alemania, Austria, Suiza o sale un mensaje que dice "La suerte no está de tu lado").

@@ -9,8 +9,11 @@ public class Pais {
     private int misilesDefensa;
     private int misilesMaxAtaque;
     private int danioRecibido;
-	
-    private String[] paises = {"ALEMANIA", "AUSTRIA", "FRANCIA", "YUGOSLAVIA", "ITALIA", "HUNGRÍA", "POLONIA", "BÉLGICA", "DINAMARCA", "SUIZA"}; 
+    private boolean pasivaPolonia;
+    private boolean evasionSuiza;
+    
+
+	private String[] paises = {"ALEMANIA", "AUSTRIA", "FRANCIA", "YUGOSLAVIA", "ITALIA", "HUNGRÍA", "POLONIA", "BÉLGICA", "DINAMARCA", "SUIZA"}; 
     
     //CONSTRUCTOR
     public Pais (String nombre) {
@@ -97,6 +100,21 @@ public class Pais {
 	public void setDanioRecibido(int danioRecibido) {
 		this.danioRecibido = danioRecibido;
 	}
+
+	public boolean isPasivaPolonia() {
+		return pasivaPolonia;
+	}
+
+	public void setPasivaPolonia(boolean pasivaPolonia) {
+		this.pasivaPolonia = pasivaPolonia;
+	}
     
+	 public boolean isEvasionSuiza() {
+			return evasionSuiza;
+		}
+
+		public void setEvasionSuiza(boolean evasionSuiza) {
+			this.evasionSuiza = evasionSuiza;
+		}
 	
 }

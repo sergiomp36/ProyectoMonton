@@ -5,7 +5,6 @@ public class Equipo {
 	private String nombre;
 	private boolean muerte;
 	private Pais pais;
-	private boolean atacadoEnRonda;
 	private int vidasRonda;
 	
 	
@@ -31,14 +30,6 @@ public class Equipo {
 	}
 	public void setPais(Pais pais) {
 		this.pais = pais;
-	}
-
-	public boolean isAtacadoEnRonda() {
-		return atacadoEnRonda;
-	}
-
-	public void setAtacadoEnRonda(boolean atacadoEnRonda) {
-		this.atacadoEnRonda = atacadoEnRonda;
 	}
 
 	public int getVidasInicioRonda() {

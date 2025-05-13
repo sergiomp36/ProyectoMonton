@@ -19,6 +19,7 @@ public class Partida {
     private String climaRonda;
     private String[] climas = { "NIEBLA", "LLUVIA", "CALOR", "NIEVE", "TERREMOTO" };
     private ArrayList<Equipo> participantes = new ArrayList<>();
+ 
 
     // MÉTODO PRINCIPAL DE LA CLASE
     public void jugar(int numJugadores) {
@@ -26,7 +27,7 @@ public class Partida {
             iniciarPartida(numJugadores);
         }
 
-        while (jugadoresVivos() >= 1) {
+        while (jugadoresVivos() > 1) {
             climaRonda = establecerClimaRonda();
             ronda();
             guardarEstadoPartida(); // Guardar el estado de la partida después de cada ronda
@@ -46,10 +47,9 @@ public class Partida {
         Utilities.imprimirValoresInicioRonda(participantes);
         imprimirClima();
         climaTerremoto();
-        resetAtacadosRonda();
         actualizarVidasInicioRonda();
         for (int i = 0; i < jugadoresVivos(); i++) {
-            escudoItalia(participantes.get(i).getPais());
+            pasivaItalia(participantes.get(i).getPais());
             repartirMisilesMAXAtaque(participantes.get(i));
             int opc;
             boolean seleccionadaAyuda = false;
@@ -65,7 +65,8 @@ public class Partida {
                 }
             }while(opc==3);
         }
-        matarMuertos();
+        evaluarDanioRecibido(participantes);
+        finalDeRonda();
     }
 
     // MÉTODO PARA GUARDAR EL ESTADO DE LA PARTIDA
@@ -183,7 +184,9 @@ public class Partida {
             equipo.getPais().setVidasIniciales(400);
         } else if (equipo.getPais().getNombrePais().equals("SUIZA")) {
             equipo.getPais().setVidasIniciales(100);
-        } else {
+        } else if (equipo.getPais().getNombrePais().equals("ITALIA")) {
+            equipo.getPais().setVidasIniciales(120);
+        }else {
             equipo.getPais().setVidasIniciales(200);
         }
     }
@@ -206,7 +209,6 @@ public class Partida {
         while (equipo.getPais().getMisilesAtaque() > 0) {
             Utilities.imprimirValoresEntreAtaques(equipo);
             Equipo objetivo = menu.escogerEquipoAtacar(participantes, equipo);
-            objetivo.setAtacadoEnRonda(true);
             ataque(objetivo, menu.cuantosMisilesAtacar(equipo), equipo);
             evaluarDefensa(objetivo);
         }
@@ -216,9 +218,9 @@ public class Partida {
         int aux = menu.numeroMisilesAtaque(equipo);
         equipo.getPais().setMisilesAtaque(aux);
         if (climaRonda.equals("LLUVIA")) {
-            equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesMaxAtaque() - aux) / 2 - 10);
+            equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+((equipo.getPais().getMisilesMaxAtaque() - aux) / 2 - 10));
         } else {
-            equipo.getPais().setMisilesDefensa((equipo.getPais().getMisilesMaxAtaque() - aux) / 2);
+            equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+((equipo.getPais().getMisilesMaxAtaque() - aux) / 2));
         }
 
     }
@@ -226,12 +228,12 @@ public class Partida {
     private void misilesDefensa(Equipo equipo) {
         if (equipo.getPais().getNombrePais().equals("AUSTRIA")) {
             if (climaRonda.equals("LLUVIA")) {
-                equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesMaxAtaque() / 2 + 20);
+                equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2 + 20));
             } else {
-                equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesMaxAtaque() / 2 + 10);
+                equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2 + 10));
             }
         } else {
-            equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesMaxAtaque() / 2);
+            equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2));
         }
         System.out.println(
                 equipo.getNombre() + ", dispones de " + equipo.getPais().getMisilesDefensa() + " misiles de defensa.");
@@ -268,6 +270,7 @@ public class Partida {
             } else {
                 atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque() - misiles);
                 System.out.println("SUIZA ha evitado el ataque!");
+                objetivo.getPais().setEvasionSuiza(true);
             }
             break;
         
@@ -296,13 +299,24 @@ public class Partida {
             break;
             
         default:
-            evaluarAtaqueAUX(objetivo, misiles, atacante);
+        	if (!objetivo.getPais().isEvasionSuiza()) {
+        		evaluarAtaqueAUX(objetivo, misiles, atacante);
+        	}
         }        
     }
 
     private void evaluarAtaqueAUX(Equipo objetivo, int misiles, Equipo atacante) {
-        objetivo.getPais().setVidasActuales(objetivo.getPais().getVidasActuales() - misiles);
+        objetivo.getPais().setDanioRecibido(objetivo.getPais().getDanioRecibido()+misiles);
         atacante.getPais().setMisilesAtaque(atacante.getPais().getMisilesAtaque() - misiles);
+    }
+    
+    private void evaluarDanioRecibido(ArrayList<Equipo> participantes) {
+    	for (int i = 0; i < jugadoresVivos(); i++) {
+    		Pais pais = participantes.get(i).getPais();
+    		pais.setVidasActuales(pais.getVidasActuales()-pais.getDanioRecibido());
+    		evaluarDefensa(participantes.get(i));
+    		pais.setDanioRecibido(0);
+    	}
     }
 
     private void evaluarDefensa(Equipo equipo) {
@@ -347,22 +361,16 @@ public class Partida {
         return aux;
     }
 
-    private void resetAtacadosRonda() {
-        for (int i = 0; i < jugadoresVivos(); i++) {
-            participantes.get(i).setAtacadoEnRonda(false);
-        }
-    }
-
     private void actualizarVidasInicioRonda() {
         for (int i = 0; i < jugadoresVivos(); i++) {
             participantes.get(i).setVidasInicioRonda(participantes.get(i).getPais().getVidasActuales());
         }
     }
 
-    private void escudoItalia(Pais pais) {
+    private void pasivaItalia(Pais pais) {
         if (pais.getNombrePais().equals("ITALIA")) {
             for (int i = 1 ; i <= numRonda ; i++) {
-                if (i%2==0) {
+                if (i%2==0 && (pais.getVidasActuales())+5>200) {
                     pais.setVidasActuales(pais.getVidasActuales()+5);
                 }
             }
@@ -380,13 +388,28 @@ public class Partida {
 
     }
 
-    private void matarMuertos() {
+    private void finalDeRonda() {
         for (int i = 0; i < participantes.size(); i++) {
-            if (participantes.get(i).getPais().getVidasActuales() <= 0) {
-                participantes.get(i).setMuerte(true);
-                System.out.println(participantes.get(i).getNombre() + " ha muerto");
-
+        	Pais pais = participantes.get(i).getPais();
+            if (pais.getVidasActuales() <= 0) {
+            	if (pais.getNombrePais().equals("POLONIA")){
+            		if (!pais.isPasivaPolonia()) {
+            			pais.setVidasActuales(0);
+            			System.out.println("POLONIA TIENE UNA ÚLTIMA OPORTUNIDAD");
+            			pais.setPasivaPolonia(true);
+            		}else {
+            			participantes.get(i).setMuerte(true);
+            			System.out.println(participantes.get(i).getNombre() + " ha muerto");
+            		}
+            	}
+            	else {
+            		participantes.get(i).setMuerte(true);
+                    System.out.println(participantes.get(i).getNombre() + " ha muerto");
+                    
+            	}
             }
+            participantes.get(i).getPais().setEvasionSuiza(false);
+            participantes.get(i).getPais().setMisilesDefensa(0);
         }
     }
     
@@ -418,14 +441,17 @@ public class Partida {
     
     private void misilesAtaqueAA(Equipo equipo) {
         equipo.getPais().setMisilesMaxAtaque(equipo.getPais().getMisilesMaxAtaque()+25);
+        System.out.println("Has recibido 25 misiles de ataque!");
     }
     
     private void misilesDefensaAA(Equipo equipo) {
-        equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+30);
+        equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+20);
+        System.out.println("Has recibido 20 misiles de defensa!");
     }
     
     private void traicionAliadaAA(Equipo equipo) {
         equipo.getPais().setVidasActuales(equipo.getPais().getVidasActuales()-10);
+        System.out.println("TRAICIÓN: Recibes 10 de daño");
     }
     
 
