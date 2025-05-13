@@ -6,6 +6,8 @@ window.ocultarPantallaInicio = function() {
         pantalla.style.display = "none";
         const imagenAmpliada = document.getElementById("imagenAmpliada");
         imagenAmpliada.src = "bienvenido.gif";
+        const musica = document.getElementById("musicaFondo");
+    musica.play();
     });
     };
 
@@ -52,5 +54,14 @@ window.ocultarPantallaInicio = function() {
         pantalla.style.display = "flex";
     }, 1000);
 });
+const toggles = document.querySelectorAll('.toggle');
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const contenido = toggle.nextElementSibling;
+      contenido.classList.toggle('activo');
+    });
+  });
+  
 });
 

@@ -7,10 +7,10 @@ import javax.sound.sampled.Clip;
 
 public class AudioPlayer {
 
-    private static Clip clip; // Variable de clase
+    private static Clip clip; 
 
-    public static void ReproducirAudio() {
-        detenerAudio(); // Detener cualquier audio antes de iniciar otro
+    public static void ReproducirAudio() { //Inicia audio menu
+        detenerAudio(); 
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("intro.wav"));
             clip = AudioSystem.getClip();
@@ -23,8 +23,8 @@ public class AudioPlayer {
         }
     }
 
-    public static void ReproducirAudio2() {
-        detenerAudio(); // Detener cualquier audio antes de iniciar otro
+    public static void ReproducirAudio2() { //Inicia audio combate
+        detenerAudio();
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("batalla.wav"));
             clip = AudioSystem.getClip();
@@ -37,7 +37,7 @@ public class AudioPlayer {
         }
     }
 
-    private static void detenerAudio() {
+    private static void detenerAudio() { //Detiene audio
         if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();

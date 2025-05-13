@@ -48,6 +48,31 @@ section {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+section.proyecto{
+    text-align: justify;
+}
+.contenido {
+  display: none;
+  margin-top: 10px;
+}
+.contenido.activo {
+  display: block;
+}
+
+
+.toggle:hover {
+  background-color: #ccc;
+}
+.toggle {
+  text-align: center;
+  color: black;
+  cursor: pointer;
+  background-color: #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -129,4 +154,23 @@ section.visible {
 
 #pantallaInicio img:hover {
     transform: scale(1.1);
+}
+
+#btnInicio {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+#btnInicio:hover {
+  background-color: black;
 }

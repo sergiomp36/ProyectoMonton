@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Partida {
 	
-    private boolean esPartidaCargada = false; // Indicador para saber si la partida fue cargada
+    private boolean esPartidaCargada = false; // Para saber si la partida fue cargada
 
     Random r = new Random();
     Menu menu = new Menu();
@@ -23,14 +23,14 @@ public class Partida {
 
     // MÉTODO PRINCIPAL DE LA CLASE
     public void jugar(int numJugadores) {
-        if (!esPartidaCargada) { // Solo inicializar si no es una partida cargada
+        if (!esPartidaCargada) { // Solo si no es partida cargada
             iniciarPartida(numJugadores);
         }
 
         while (jugadoresVivos() > 1) {
             climaRonda = establecerClimaRonda();
             ronda();
-            guardarEstadoPartida(); // Guardar el estado de la partida después de cada ronda
+            guardarEstadoPartida(); // Guarda la partida cada ronda
             numRonda++;
         }
 
@@ -69,7 +69,7 @@ public class Partida {
         finalDeRonda();
     }
 
-    // MÉTODO PARA GUARDAR EL ESTADO DE LA PARTIDA
+    // MÉTODO GUARDAR PARTIDA
     private void guardarEstadoPartida() {
         String url = "jdbc:sqlite:c:/sqlite/RedCode.db";
         String createTableSQL = "CREATE TABLE IF NOT EXISTS Partidas ("
@@ -86,10 +86,10 @@ public class Partida {
              Statement stmt = conn.createStatement();
              PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
 
-            // Crear la tabla si no existe
+            // Crea tabla si no existe
             stmt.execute(createTableSQL);
 
-            // Preparar los datos para guardar
+            // Prepara datos para guardar
             pstmt.setInt(1, numRonda);
             pstmt.setInt(2, participantes.size());
             pstmt.setString(3, obtenerNombresEquipos());
@@ -104,7 +104,7 @@ public class Partida {
         }
     }
 
-    // MÉTODO PARA CARGAR LA ÚLTIMA PARTIDA
+    // MÉTODO CARGAR PARTIDA
     public void cargarUltimaPartida() {
         String url = "jdbc:sqlite:c:/sqlite/RedCode.db";
         String querySQL = "SELECT * FROM Partidas ORDER BY id DESC LIMIT 1";
@@ -114,7 +114,7 @@ public class Partida {
              ResultSet rs = stmt.executeQuery(querySQL)) {
 
             if (rs.next()) {
-                // Restaurar el estado de la partida
+                // Restaurar partida
                 numRonda = rs.getInt("ronda")+1;
                 int numJugadores = rs.getInt("num_jugadores");
                 String[] nombres = rs.getString("nombres").split(",");
@@ -130,7 +130,7 @@ public class Partida {
                     participantes.add(equipo);
                 }
 
-                esPartidaCargada = true; // Indicar que la partida fue cargada
+                esPartidaCargada = true; // Indicar que fue cargada
                 System.out.println("Última partida cargada correctamente.");
             } else {
                 System.out.println("No hay partidas guardadas.");
@@ -141,13 +141,13 @@ public class Partida {
         }
     }
 
-    // MÉTODOS AUXILIARES PARA OBTENER DATOS DE LOS EQUIPOS
+    // MÉTODOS DATOS DE EQUIPOS
     private String obtenerNombresEquipos() {
         StringBuilder nombres = new StringBuilder();
         for (Equipo equipo : participantes) {
             nombres.append(equipo.getNombre()).append(",");
         }
-        return nombres.substring(0, nombres.length() - 1); // Eliminar la última coma
+        return nombres.substring(0, nombres.length() - 1); // Elimina la coma
     }
 
     private String obtenerPaisesEquipos() {
@@ -155,7 +155,7 @@ public class Partida {
         for (Equipo equipo : participantes) {
             paises.append(equipo.getPais().getNombrePais()).append(",");
         }
-        return paises.substring(0, paises.length() - 1); // Eliminar la última coma
+        return paises.substring(0, paises.length() - 1); 
     }
 
     private String obtenerVidasEquipos() {
@@ -163,7 +163,7 @@ public class Partida {
         for (Equipo equipo : participantes) {
             vidas.append(equipo.getPais().getVidasActuales()).append(",");
         }
-        return vidas.substring(0, vidas.length() - 1); // Eliminar la última coma
+        return vidas.substring(0, vidas.length() - 1); 
     }
 
     // MÉTODOS AUXILIARES
