@@ -11,6 +11,7 @@ public class Pais {
     private int danioRecibido;
     private boolean pasivaPolonia;
     private boolean evasionSuiza;
+    private boolean pasivaHungria;
     
 
 	private String[] paises = {"ALEMANIA", "AUSTRIA", "FRANCIA", "YUGOSLAVIA", "ITALIA", "HUNGRÍA", "POLONIA", "BÉLGICA", "DINAMARCA", "SUIZA"}; 
@@ -111,10 +112,20 @@ public class Pais {
     
 	 public boolean isEvasionSuiza() {
 			return evasionSuiza;
-		}
+	}
 
-		public void setEvasionSuiza(boolean evasionSuiza) {
-			this.evasionSuiza = evasionSuiza;
-		}
+	public void setEvasionSuiza(boolean evasionSuiza) {
+		this.evasionSuiza = evasionSuiza;
+	}
+
+	public boolean isPasivaHungria() {
+		return pasivaHungria;
+	}
+
+	public void setPasivaHungria(boolean pasivaHungria) {
+		this.pasivaHungria = pasivaHungria;
+	}
+	
+	
 	
 }

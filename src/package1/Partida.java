@@ -232,7 +232,11 @@ public class Partida {
             } else {
                 equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2 + 10));
             }
-        } else {
+        }else if (equipo.getPais().getNombrePais().equals("HUNGRIA")) {
+        	equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2));
+        	equipo.getPais().setPasivaHungria(true);
+        }
+        else {
             equipo.getPais().setMisilesDefensa(equipo.getPais().getMisilesDefensa()+(equipo.getPais().getMisilesMaxAtaque() / 2));
         }
         System.out.println(

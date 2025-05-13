@@ -5,17 +5,16 @@ Los misiles pueden dividirse para atacar a varios equipos a la vez.
 La defensa cuesta el doble de misiles que atacar.
 Los misiles pueden dividirse entre ataque y defensa.
 
-<<<<<<< HEAD
-Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender en l. 
-=======
+
 Los jugadores pueden elegir la opción, en determinadas rondas, 'Solicitar ayuda aliada' en lugar de atacar o defender. 
->>>>>>> bc4cc5d63e864143082304bd5f06f29588b11105
 Esto causará uno de los siguientes efectos de manera aleatoria:
 
 Conseguir 25 misiles para atacar extra, 25%.
 Conseguir 30 misiles para defender extra, 25%.
 ¡Traición aliada! Recibir 10 puntos de daño, 15%.
-Puedes elegir entre varios países, cada país tiene una habilidad pasiva diferente:
+
+
+Puedes elegir entre varios países, cada uno tiene una habilidad pasiva diferente:
 
 ALEMANIA: 10 más de misiles al atacar, 10 extra en niebla.
 AUSTRIA: 10 más al defender. 10 extra en lluvia.
