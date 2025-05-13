@@ -5,7 +5,7 @@ Los misiles pueden dividirse para atacar a varios equipos a la vez.
 La defensa cuesta el doble de misiles que atacar.
 Los misiles pueden dividirse entre ataque y defensa.
 
-Los jugadores pueden elegir la opción 'Solicitar ayuda aliada' en lugar de atacar o defender. 
+Los jugadores pueden elegir la opción, en determinadas rondas, 'Solicitar ayuda aliada' en lugar de atacar o defender. 
 Esto causará uno de los siguientes efectos de manera aleatoria:
 
 Conseguir 25 misiles para atacar extra, 25%.
