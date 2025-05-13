@@ -5,25 +5,22 @@ Los misiles pueden dividirse para atacar a varios equipos a la vez.
 La defensa cuesta el doble de misiles que atacar.
 Los misiles pueden dividirse entre ataque y defensa.
 
-
-Los jugadores pueden elegir la opción, en determinadas rondas, 'Solicitar ayuda aliada' en lugar de atacar o defender. 
+Los jugadores pueden elegir, en determinadas rondas, la opción 'Solicitar ayuda aliada' en lugar de atacar o defender. 
 Esto causará uno de los siguientes efectos de manera aleatoria:
 
-Conseguir 25 misiles para atacar extra, 25%.
-Conseguir 30 misiles para defender extra, 25%.
-¡Traición aliada! Recibir 10 puntos de daño, 15%.
-
-
-Puedes elegir entre varios países, cada uno tiene una habilidad pasiva diferente:
+Conseguir 25 misiles para atacar extra.
+Conseguir 30 misiles para defender extra.
+¡Traición aliada! Recibir 10 puntos de daño.
+Puedes elegir entre varios países, cada país tiene una habilidad pasiva diferente:
 
 ALEMANIA: 10 más de misiles al atacar, 10 extra en niebla.
 AUSTRIA: 10 más al defender. 10 extra en lluvia.
 FRANCIA: 60 más de vida máxima, 5% posibilidades de fallar el ataque.
 YUGOSLAVIA: 20% más de daño realizado y 10% de daño recibido en climas especiales.
-ITALIA: Comienza con un 60% de la vida máxima y cada 2 rondas genera automáticamente 5 de vida.
-HUNGRÍA: Si usa todos los recursos para defender, se vuelve invulnerable, pero pierde el siguiente turno (no podrá atacar o defender).
+ITALIA: Comienza con dos tercios de la vida máxima y cada 2 rondas genera automáticamente 5 de vida.
+HUNGRÍA: Empieza con un 150% de vida, pero tiene 35 misiles.
 POLONIA: Consigue una ronda extra al llegar a 0 de vida.
-BÉLGICA: Consigue una habilidad aleatoria entre 4. (Copia a Alemania, Austria, Suiza o sale un mensaje que dice "La suerte no está de tu lado").
+BÉLGICA: ¡País del caos! Consigue vida aleatoria (entre 100 y 400) y misiles aleatorios (entre 5 y 80).
 DINAMARCA: Doble de vida, pero empieza con 10 misiles (que se van incrementando en 10 en cada ronda hasta el número normal de misiles que son 50).
 SUIZA: Mitad de vida, 40% de evasión.
 
