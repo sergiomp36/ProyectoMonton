@@ -36,6 +36,18 @@ public class AudioPlayer {
             ex.printStackTrace();
         }
     }
+    
+    public static void ReproducirAudio3() { //Suena cuando atacas
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("ataque.wav"));
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch(Exception ex) {
+            System.out.println("Error al reproducir intro.wav");
+            ex.printStackTrace();
+        }
+    }
 
     private static void detenerAudio() { //Detiene audio
         if (clip != null && clip.isRunning()) {

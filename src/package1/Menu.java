@@ -26,7 +26,7 @@ public class Menu {
 	}
 	
 	public int menuNumJugadores() {
-		System.out.print("\nIntroduzca el número de jugadores entre 3 y 10: ");
+		System.out.println("\nIntroduzca el número de jugadores entre 3 y 10: ");
 		opcion = input.nextInt();
 		while (opcion<3||opcion>10) {
 			System.out.println("Número de jugadores incorrecto.\nIntroduzca un número entre 3 y 10.");
@@ -72,15 +72,22 @@ public class Menu {
 			System.out.print(equipo.getNombre()+", escoge una opción: ");
 			opcion=input.nextInt();
 			while(opcion<1||opcion>2) {
-				System.out.print("Error: Inténtalo de nuevo: ");
+				if (opcion ==3) {
+					System.out.println("No hay respuesta, ¡atento a la consola!");
+					opcion=input.nextInt();
+				} else {
+				System.out.println("Error: Inténtalo de nuevo: ");
 				opcion=input.nextInt();
+				}
 			}
 			return opcion;
 		}
 		else {
 			if (!climaRonda.equals("NIEVE")) {
-				System.out.println("\n(1) Atacar\n(2) Defender\n(3) Ayuda aliada");
-				System.out.print(equipo.getNombre()+", escoge una opción: ");
+				System.out.println("\n(1) Atacar\n(2) Defender\n");
+				System.out.println("¡Abiertas comunicaciones! Ayuda aliada disponible");
+				System.out.println("");
+				System.out.println(equipo.getNombre()+", escoge una opción: ");
 				opcion=input.nextInt();
 				while(opcion<1||opcion>3) {
 					System.out.print("Error: Inténtalo de nuevo: ");
@@ -98,7 +105,7 @@ public class Menu {
 	
 	public int menuAtacarDefender(Equipo equipo) {
 			System.out.println("(1) Atacar\n(2) Defender");
-			System.out.print(equipo.getNombre()+", escoge una opción: ");
+			System.out.println(equipo.getNombre()+", escoge una opción: ");
 			opcion=input.nextInt();
 			while(opcion<1||opcion>2) {
 				System.out.print("Error: Inténtalo de nuevo: ");
@@ -137,7 +144,7 @@ public class Menu {
 	
 	
 	public int cuantosMisilesAtacar(Equipo equipo) {
-		System.out.print("Introduce con cuantos misiles: ");
+		System.out.println("Introduce con cuantos misiles: ");
 		int x = input.nextInt();
 		while (x>equipo.getPais().getMisilesAtaque()) {
 			System.out.print("ERROR: Número de misiles incorrectos.\nInténtalo de nuevo: ");
