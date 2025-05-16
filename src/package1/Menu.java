@@ -16,7 +16,7 @@ public class Menu {
 		System.out.println("(1) Jugar\n(2) Reglas\n(3) Información\n(4) Cargar partida\n(0) Salir");
 		opcion=input.nextInt();
 		while (opcion<0||opcion>4) {
-			System.out.print("Opción incorrecta. Inténtalo de nuevo: ");
+			System.out.println("Opción incorrecta. Inténtalo de nuevo: ");
 			opcion=input.nextInt();
 		}
 		if (opcion==2||opcion==3 || opcion==4) {
@@ -46,7 +46,7 @@ public class Menu {
 	public String escogerPais(Equipo equipo) {
 		String paisEscogido;
 		imprimirPaisesEscoger();
-		System.out.print("\n"+equipo.getNombre()+", introduzca el nombre del pais: ");
+		System.out.println("\n"+equipo.getNombre()+", introduzca el nombre del pais: ");
 		paisEscogido = input.next().toUpperCase();
 		System.out.println();
 		while (!Utilities.comprobarPaisesRegex(paisEscogido) || Utilities.contains(paisesEscogidos, paisEscogido)) {
@@ -67,41 +67,56 @@ public class Menu {
 	
 	
 	public int menuAtacarDefender(Equipo equipo, int numRonda, String climaRonda, boolean seleccionadaAyuda) {
-		if (numRonda%3!=0 || seleccionadaAyuda==true) {
-			System.out.println("(1) Atacar\n(2) Defender");
-			System.out.print(equipo.getNombre()+", escoge una opción: ");
-			opcion=input.nextInt();
-			while(opcion<1||opcion>2) {
-				if (opcion ==3) {
-					System.out.println("No hay respuesta, ¡atento a la consola!");
-					opcion=input.nextInt();
-				} else {
-				System.out.println("Error: Inténtalo de nuevo: ");
-				opcion=input.nextInt();
-				}
-			}
-			return opcion;
-		}
-		else {
-			if (!climaRonda.equals("NIEVE")) {
-				System.out.println("\n(1) Atacar\n(2) Defender\n");
-				System.out.println("¡Abiertas comunicaciones! Ayuda aliada disponible");
-				System.out.println("");
-				System.out.println(equipo.getNombre()+", escoge una opción: ");
-				opcion=input.nextInt();
-				while(opcion<1||opcion>3) {
-					System.out.print("Error: Inténtalo de nuevo: ");
-					opcion=input.nextInt();
-				}
-				return opcion;
-			}
-			else {
-				System.out.println("AYUDA ALIADA no disponible en NIEVE");
-				climaRonda = climaRonda + " ";
-				return menuAtacarDefender(equipo,numRonda,climaRonda, seleccionadaAyuda);
-			}
-		}		
+	    if (numRonda % 3 != 0 || seleccionadaAyuda) {
+	        System.out.println("(1) Atacar\n(2) Defender");
+	        System.out.println("Comunicaciones aliadas cortadas ¡atento a la consola!");
+	        System.out.println(equipo.getNombre() + ", escoge una opción: ");
+	        opcion = input.nextInt();
+
+	        if (opcion == 999) {
+	            return 999;
+	        }
+
+	        while (opcion != 1 && opcion != 2) {
+	            System.out.println("Opción no válida. Inténtalo de nuevo: ");
+	            opcion = input.nextInt();
+
+	            if (opcion == 999) {
+	                return 999;
+	            }
+	        }
+
+	        return opcion;
+
+	    } else {
+	        if (!climaRonda.equals("NIEVE")) {
+	            System.out.println("(1) Atacar\n(2) Defender\n(3) Ayuda Aliada");
+		    System.out.println("¡Abiertas comunicaciones! Ayuda aliada disponible");
+		    System.out.println("");
+	            System.out.println(equipo.getNombre() + ", escoge una opción: ");
+	            opcion = input.nextInt();
+
+	            if (opcion == 999) {
+	                return 999;
+	            }
+
+	            while (opcion < 1 || opcion > 3) {
+	                System.out.println("Opción no válida. Inténtalo de nuevo: ");
+	                opcion = input.nextInt();
+
+	                if (opcion == 999) {
+	                    return 999;
+	                }
+	            }
+
+	            return opcion;
+	        } else {
+	            System.out.println("AYUDA ALIADA no disponible en NIEVE.");
+	            return menuAtacarDefender(equipo, numRonda, climaRonda + " ", seleccionadaAyuda);
+	        }
+	    }
 	}
+
 	
 	public int menuAtacarDefender(Equipo equipo) {
 			System.out.println("(1) Atacar\n(2) Defender");
@@ -136,7 +151,7 @@ public class Menu {
 		}
 		int opcion = input.nextInt();
 		while (opcion<1||opcion>participantes.size()) {
-			System.out.print("ERROR: Opción incorrecta.\nInténtalo de nuevo: ");
+			System.out.println("ERROR: Opción incorrecta.\nInténtalo de nuevo: ");
 			opcion = input.nextInt();
 		}
 		return participantes.get(opcion-1);

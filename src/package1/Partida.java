@@ -59,7 +59,11 @@ public class Partida {
                     atacar(participantes.get(i));
                 } else if (opc == 2) {
                     misilesDefensa(participantes.get(i));
-                } else {
+                } else if (opc == 999) {
+                	menu.menuInicial();
+                	return;
+                }                
+                else {
                     seleccionadaAyuda=true;
                     ayudaAliada(participantes.get(i));
                 }
